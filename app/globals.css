@@ -244,5 +244,15 @@
   @apply flex items-center justify-center w-10 h-10 rounded-full 
          bg-transparent border border-gray-300 text-black 
          shadow-md transition;
+  &.grey-bg{
+     @apply border border-white/30 shadow-[0_4px_4px_rgba(0,0,0,0.42)];
+    background: linear-gradient(
+    40deg,
+    rgba(82, 82, 82, 0.24) 0%,    
+    rgba(82, 82, 82, 0.24) 24%, 
+    rgba(0, 30, 41, 0.4) 40%,  
+    rgba(0, 30, 41, 0.4) 100%  
+  );
+}
 }
 
