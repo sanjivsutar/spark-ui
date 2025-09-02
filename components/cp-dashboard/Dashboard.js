@@ -511,7 +511,7 @@ const CmpDashboard = () => {
             <h2 className='text-sprk-dark-2 text-white'>Curious about your past performance?</h2>
             <p className="text-sm text-white">Let our AI dig into your history to answer your questions and reveal useful insights.</p>
           </div>
-          <button className="btn-default">
+          <button className="btn-default flex gap-1">
             <Image 
               src="/assets/icons/Shape.svg" 
               alt="Home Icon" 
