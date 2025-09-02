@@ -73,7 +73,7 @@ export default function AddNewCampaign({ open, handleClose }) {
     <Modal open={open} onClose={handleClose}>
       <Box sx={style}>
         <div className="flex items-center justify-between mb-6">
-            <div className="sec-title">Add New Campaign</div>
+            <div className="sec-title">Edit Campaign</div>
             <Image src="/assets/images/close.png" alt="Icon" width={20} height={20}/>
         </div>
         <Stack direction="row" spacing={2} mb={2}>
@@ -165,7 +165,7 @@ export default function AddNewCampaign({ open, handleClose }) {
             Cancel
           </button>
           <button className="btn-dark btn-default" onClick={handleSubmit}>
-            Add Campaign
+            Save Changes
           </button>
         </Stack>
       </Box>

@@ -90,7 +90,7 @@ export default function CampaignDetail() {
                     <Image src="/assets/images/close.png" alt="Icon" width={14} height={14} />
                   </button>
                 </div>
-    </div>
+        </div>
         </MainPanel>
         </>
     )
