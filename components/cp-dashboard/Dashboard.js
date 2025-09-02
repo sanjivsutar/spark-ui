@@ -63,14 +63,17 @@ const CmpDashboard = () => {
       <main className=''>
         <h1 className="sec-title text-sprk-dark-2 py-[31px]">Welcome Meha,</h1>
 
-        <div className='flex gap-5 rounded-2xl  w-full mb-6 py-6 shadow-lg border border-gray-200 relative'>
-          <Image src="/assets/images/thumb-up-dynamic.png" alt="Home Icon" width={84} height={84} className="bg-[url('/assets/images/Vector.png')]" />
-          <div className='w-[50%]'>
+        <div className='flex gap-5 rounded-2xl  w-full mb-6  shadow-lg border border-gray-200 relative'>
+          <div className='rounded-xl overflow-hidden'>
+            <Image src="/assets/images/thumb-with-bg.png" alt="Home Icon" width={160} height={160}  />
+          </div>
+          <div className='flex justify-between w-full py-6 px-4'>
+            <div className='w-[48%]'>
             <h2 className='sec-title text-sprk-dark-2'>Your tailored setup guide!</h2>
             <p className='sec-desc text-sprk-grey'>Let’s assist you in kickstarting your journey step-by-step by organising things for you.</p>
           </div>
           <div className="relative w-[40%]">
-            <div className="absolute top-4 left-[10.5%] right-[5%] h-[2px] bg-gray-300"></div>
+            <div className="absolute top-4 left-[10.5%] right-[8%] h-[2px] bg-gray-300"></div>
             <ul className="flex items-center justify-between w-full relative z-10">
               <li className="flex flex-col items-center">
                 <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
@@ -92,9 +95,10 @@ const CmpDashboard = () => {
               </li>
             </ul>
           </div>
-            <button className="absolute top-3 right-4  text-gray-400 hover:text-gray-600">
+          <button className="absolute top-3 right-4  text-gray-400 hover:text-gray-600">
               <Image src="/assets/images/close.png" alt="Icon" width={14} height={14} />
-            </button>
+          </button>
+          </div>
         </div>
 
         {/* Stat Cards */}
@@ -368,12 +372,12 @@ const CmpDashboard = () => {
                           />
                   </SwiperSlide>
                   <div className="absolute bottom-4 right-4 flex gap-4 z-10">
-                    <button className="custom-prev">
-                      <Image src="/assets/icons/left-arrow.svg" alt="Prev" width={14} height={14} />
+                    <button className="custom-prev grey-bg">
+                      <Image src="/assets/icons/left-arrow.svg" alt="Prev" width={14} height={14} className="invert brightness-0"/>
                     </button>
 
-                    <button className="custom-next">
-                      <Image src="/assets/icons/right-arrow.svg" alt="Next" width={14} height={14} />
+                    <button className="custom-next grey-bg">
+                      <Image src="/assets/icons/right-arrow.svg" alt="Next" width={14} height={14} className="invert brightness-0"/>
                     </button>
                   </div>
               </Swiper>
@@ -507,7 +511,7 @@ const CmpDashboard = () => {
             <h2 className='text-sprk-dark-2 text-white'>Curious about your past performance?</h2>
             <p className="text-sm text-white">Let our AI dig into your history to answer your questions and reveal useful insights.</p>
           </div>
-          <button className="btn-default">
+          <button className="btn-default flex gap-1">
             <Image 
               src="/assets/icons/Shape.svg" 
               alt="Home Icon" 
@@ -522,7 +526,7 @@ const CmpDashboard = () => {
         <section className='bg-black py-[30px] rounded-2xl '>
           <div className='flex gap-[39.5px]'>
             <div className='w-[55%] pl-6 py-[23px]'>
-              <h3 className='text-2xl font-extrabold text-sprk-light-1 pb-6'>Start your end-to-end marketing analysis today with our tailored solutions.</h3>
+              <h3 className='text-2xl font-extrabold text-sprk-light-1 pb-6 w-[56%]'>Start your end-to-end marketing analysis today with our tailored solutions.</h3>
               <button className="btn-default ">Get in Touch</button>
             </div>
             <div>
@@ -530,7 +534,7 @@ const CmpDashboard = () => {
                 <li className='flex justify-between bg-[linear-gradient(126.16deg,rgba(82,82,82,0.24)-3.39%,rgba(0,30,41,0.4)58.7%)] rounded-xl border border-[#525252] shadow overflow-hidden py-[30px] px-6'>
                   <div>
                     <h2 className='text-xl font-bold text-sprk-light-1 pb-6'>Influencers</h2>
-                    <ul className="bg-black card-list">
+                    <ul className="card-list">
                       <li className='pb-4 text-[11px]'>Browse & analyse influencers</li>
                       <li className='pb-4 text-[11px]'>Create a plan with your chosen influencers</li>
                       <li className='text-[11px]'>Explore leading influencer by categories</li>
@@ -547,7 +551,7 @@ const CmpDashboard = () => {
                  <li className='flex justify-between bg-[linear-gradient(126.16deg,rgba(82,82,82,0.24)-3.39%,rgba(0,30,41,0.4)58.7%)] rounded-xl border border-[#525252] shadow overflow-hidden py-[30px] px-6'>
                   <div>
                     <h2 className='sec-title text-sprk-light-1 pb-6'>Creatives</h2>
-                    <ul className="bg-black card-list">
+                    <ul className="card-list">
                       <li className='pb-4 text-[11px]'>Upload creatives & performance data </li>
                       <li className='pb-4 text-[11px]'>Analyse creatives</li>
                       <li className='text-[11px]'>View report</li>

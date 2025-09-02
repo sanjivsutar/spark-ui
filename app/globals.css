@@ -48,7 +48,7 @@
   }
 
   .card-list {
-    @apply list-disc pl-5 space-y-2; /* Tailwind utilities */
+    @apply list-disc pl-5 space-y-2; 
   }
 
   .card-list li {
@@ -75,7 +75,11 @@
 
   /* button component start*/
   .btn-default{
-     @apply px-4 py-[10px] rounded-lg bg-white text-[#022B59] text-xs font-semibold shadow-md h-[36px];
+     @apply flex items-center px-4 py-3 rounded-lg bg-white text-[#022B59] text-base font-semibold shadow-md;
+  }
+
+  .btn-primary{
+    @apply border border-[#000000]
   }
 
   .btn-dark {
@@ -94,12 +98,16 @@
      hover:bg-transparent transition border-[#011d3e] border-1;
   }
 
+  .btn-link {
+    @apply text-sm font-semibold uppercase border-b border-[#022B59];
+  }
+
 
   /* button component end */
 
 
   .stats-container {
-    @apply flex gap-12; /* flex layout with 3rem gap */
+    @apply flex gap-12; 
   }
 
   .stat-item {
@@ -128,7 +136,6 @@
       background-position: center;
     }
 
-    /* styles/globals.css (or wherever you put custom styles) */
   .cp-main-nav {
     @apply flex gap-6 h-[60px] items-stretch text-[16px];
 
@@ -198,10 +205,38 @@
     @apply flex gap-2 pb-[15px]; 
 
     .breadcrumb-item{
-      @apply text-xs font-medium;
+      @apply text-xs font-medium text-sprk-grey;
     }
   }
 
+  .cp-scenario-form, .cp-assumptions-form{
+    .label-wrap{
+      @apply flex gap-1 text-sm font-medium mb-2;
+    }
+  }
+
+  .cp-scenario-card{
+    @apply flex-1 min-w-[250px] bg-white rounded-2xl shadow-sm border border-gray-200 p-6 flex justify-between;
+  
+    .title {
+      @apply font-bold text-xl text-sprk-dark;
+    }
+    .desc{
+      @apply font-medium text-xs text-sprk-grey;
+    }
+  }
+
+  .cp-scenario-card.active {
+    @apply shadow-md rounded-2xl; 
+
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.08) -1.67%,
+      rgba(255, 155, 63, 0.08) 33.42%,
+      rgba(220, 47, 35, 0.08) 67.18%
+    );
+    border: 1px solid #F14931; 
+  }
 }
 
 .custom-prev,
@@ -209,6 +244,16 @@
   @apply flex items-center justify-center w-10 h-10 rounded-full 
          bg-white border border-gray-300 text-black 
          shadow-md transition;
+  &.grey-bg{
+     @apply border border-white/30 shadow-[0_4px_4px_rgba(0,0,0,0.42)];
+    background: linear-gradient(
+    40deg,
+    rgba(82, 82, 82, 0.24) 0%,    
+    rgba(82, 82, 82, 0.24) 24%, 
+    rgba(0, 30, 41, 0.4) 40%,  
+    rgba(0, 30, 41, 0.4) 100%  
+  );
+}
 }
 
 .custom-prev:hover,
