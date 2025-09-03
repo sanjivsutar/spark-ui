@@ -1,17 +1,22 @@
 "use client";
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 // import CpHeader from '../../components/cp-user-header/CpHeader';
 // import CpTitle from '@/components/cp-title/CpTitle';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import required modules
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation, EffectCoverflow } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { Menu, MenuItem } from '@mui/material';
+import { Inter } from 'next/font/google';
 
 const CmpDashboard = () => {
+
+  const [dateRangeInfo, setDateRangeInfo] = useState(null);
+  const [exportFormat, setExportFormat] = useState(null);
 
   //  const swiperRef = useRef(null);
   //  const swiperRef1 = useRef(null);
@@ -61,7 +66,145 @@ const CmpDashboard = () => {
 
       {/* Main Content */}
       <main className=''>
-        <h1 className="sec-title text-sprk-dark-2 py-[31px]">Welcome Meha,</h1>
+        <div className='flex justify-between items-center'>
+          <h1 className="text-[28px] font-bold text-sprk-dark-2 py-[31px]">Welcome Meha,</h1>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <div>
+                <button
+                className="font-semibold text-[13px] text-[#022B59] rounded-lg bg-white flex items-center gap-2 border border-[#022B59] py-2 px-4"
+                onClick={(e) => setDateRangeInfo(e.currentTarget)}
+              >
+                Last 30 days
+                <Image
+                  src="/assets/icons/Chevron-down.svg"
+                  alt="Export icon"
+                  width={12}
+                  height={12}
+                />
+              </button>
+
+              <Menu
+                anchorEl={dateRangeInfo}
+                open={Boolean(dateRangeInfo)}
+                onClose={() => setDateRangeInfo(null)}
+                PaperProps={{
+                  sx: {
+                    width: dateRangeInfo ? dateRangeInfo.offsetWidth : "auto", // Match button width
+                  },
+                }}
+              >
+                <MenuItem
+                  sx={{
+                    fontSize: "12px",
+                    fontWeight: 500,
+                    padding: "8px 16px",
+                    color: "#0D0D11",
+                    "&:hover": {
+                      backgroundColor: "#F3F4F6",
+                    },
+                  }}
+                  onClick={() => setDateRangeInfo(null)}
+                >
+                  Last 30 days
+                </MenuItem>
+                <MenuItem 
+                  sx={{
+                    fontSize: "12px",
+                    fontWeight: 500,
+                    padding: "8px 16px",
+                    color: "#0D0D11", // gray-700
+                    "&:hover": {
+                      backgroundColor: "#F3F4F6", // gray-100
+                    },
+                  }}
+                  onClick={() => setDateRangeInfo(null)}
+                  >
+                  Last 7 days
+                  </MenuItem>
+                  <MenuItem
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      padding: "8px 16px",
+                      color: "#0D0D11", // gray-700
+                      "&:hover": {
+                        backgroundColor: "#F3F4F6", // gray-100
+                      },
+                    }} 
+                    onClick={() => setDateRangeInfo(null)}
+                  >
+                  Last year
+                  </MenuItem>
+                </Menu>
+              </div>
+              <div>
+                <button
+                  className='font-semibold text-[13px] text-[#022B59] rounded-lg bg-white flex items-center gap-2 border border-[#022B59] py-2 px-4'
+                  onClick={(e) => setExportFormat(e.currentTarget)}
+                >
+                  <Image src="/assets/icons/Export.svg" alt='Export icon' width={12} height={12} />
+                  Export
+                </button>
+                <Menu
+                  anchorEl={exportFormat}
+                  open={Boolean(exportFormat)}
+                   PaperProps={{
+                      sx: {
+                        width: exportFormat ? exportFormat.offsetWidth : "auto", // Match button width
+                      },
+                    }}
+                  onClose={() => setExportFormat(null)}
+                >
+                  <MenuItem
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      justifyContent: "center",
+                      padding: "8px 16px",
+                      color: "#0D0D11", // gray-700
+                      "&:hover": {
+                        backgroundColor: "#F3F4F6", // gray-100
+                      },
+                    }} 
+                    onClick={() => setExportFormat(null)}
+                  >
+                  JPEG
+                  </MenuItem>
+                  <MenuItem
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      justifyContent: "center",
+                      padding: "8px 16px",
+                      color: "#0D0D11", // gray-700
+                      "&:hover": {
+                        backgroundColor: "#F3F4F6", // gray-100
+                      },
+                    }} 
+                    onClick={() => setExportFormat(null)}
+                  >
+                  PNG
+                  </MenuItem>
+                  <MenuItem
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      justifyContent: "center",
+                      padding: "8px 16px",
+                      color: "#0D0D11", // gray-700
+                      "&:hover": {
+                        backgroundColor: "#F3F4F6", // gray-100
+                      },
+                    }} 
+                    onClick={() => setExportFormat(null)}
+                  >
+                  PDF
+                  </MenuItem>
+                </Menu>
+            </div>
+          </div>
+        </div>
+
 
         <div className='flex gap-5 rounded-2xl  w-full mb-6  shadow-lg border border-gray-200 relative'>
           <div className='rounded-xl overflow-hidden'>
@@ -175,17 +318,26 @@ const CmpDashboard = () => {
           </div>
            <div className="relative top-6 right-[40px] flex gap-[16px]">
               <button className="custom-prev" onClick={() => goPrevslide("Ai-recommendation-swiper")}>
-                <Image src="/assets/icons/left-arrow.svg" alt="Prev" width={14} height={14} />
+                <Image src="/assets/icons/left-arrow.svg" alt="Prev" width={14} height={14} className='invert'/>
               </button>
               <button className="custom-next" onClick={() => goNextSlide("Ai-recommendation-swiper")}>
-                <Image src="/assets/icons/right-arrow.svg" alt="Next" width={14} height={14} />
+                <Image src="/assets/icons/right-arrow.svg" alt="Next" width={14} height={14} className='invert'/>
               </button>
             </div>
           </div>
             <Swiper
+              effect={'coverflow'}
+              grabCursor={true}
               slidesPerView={3}
               centeredSlides={true}
               spaceBetween={30}
+              coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
               // navigation={{
               //   nextEl: ".custom-next",
               //   prevEl: ".custom-prev",
@@ -194,11 +346,11 @@ const CmpDashboard = () => {
               //   swiperRef.current = swiper; 
               // }}
               onSwiper={(swiper) => (swiperRefs.current['Ai-recommendation-swiper'] = swiper)}
-              modules={[Navigation]}
+              modules={[EffectCoverflow,Navigation]}
               className="mySwiper"
             >
               <SwiperSlide>
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
                     <ul className='card-bullet-list'>
@@ -224,7 +376,7 @@ const CmpDashboard = () => {
                   </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Maximize marginal returns</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Some channels have reached saturation; incremental spend yields diminishing returns</p>
                     <ul className='card-bullet-list'>
@@ -244,7 +396,7 @@ const CmpDashboard = () => {
                   </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
                     <ul className='card-bullet-list'>
@@ -270,7 +422,7 @@ const CmpDashboard = () => {
                   </div>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
                     <ul className='card-bullet-list'>

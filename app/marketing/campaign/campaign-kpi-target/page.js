@@ -11,6 +11,7 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { color, fontSize, fontWeight } from '@mui/system';
 import CustomTextField from '@/components/cp-custom-textfield/CpCustomTextField';
 import MainPanel from '@/components/cp-main-panel/cp-main-panel';
+import CpCustomBudgetModal from '@/components/cp-modal/CpCustomBudgetModal';
 
 const CpCampaignKPITarget = () => {
 
@@ -39,12 +40,6 @@ const CpCampaignKPITarget = () => {
     prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
   );
 };
-
-  const handleSubmit = () => {
-    console.log("Submitting Custom Budget:");
-    setOpen(false)
-  };
-
   return (
     <MainPanel>
         <>
@@ -287,24 +282,18 @@ const CpCampaignKPITarget = () => {
 
 
         {/* custom budget modal code */}
-        <Modal open={open} onClose={() => setOpen(true)}>
+        {/* <Modal open={open} onClose={() => setOpen(true)}>
                 <div className="fixed inset-0 flex items-center justify-center z-50">
-                {/* Modal box */}
                 <div className="bg-white w-full max-w-[848px] rounded-xl shadow-lg p-8 relative">
-                    {/* Close button */}
                     <button
                     onClick={() => setOpen(false)}
                     className="absolute top-[32px] right-[24px]"
                     >
                         <Image src="/assets/images/close.png" alt='close icon' width={20} height={20} />
                     </button>
-
-                    {/* Modal Title */}
                     <h2 className="text-2xl font-extrabold text-sprk-dark-2 mb-6">
                     Custom Budget
                     </h2>
-
-                    {/* Form */}
                     <div>
                     <div className='py-6'>
                         <p className="text-sm font-medium text-sprk-dark-2 pb-2">
@@ -414,8 +403,6 @@ const CpCampaignKPITarget = () => {
                         </FormControl>
                     </div>
                     </div>
-
-                    {/* Buttons */}
                     <div className="flex justify-end space-x-3 mt-4">
                     <button
                         onClick={() => setOpen(false)}
@@ -429,7 +416,9 @@ const CpCampaignKPITarget = () => {
                     </div>
                 </div>
                 </div>
-        </Modal>
+        </Modal> */}
+
+        <CpCustomBudgetModal open={open} handleClose={() => setOpen(false)} />
         </>
     </MainPanel>
   )
