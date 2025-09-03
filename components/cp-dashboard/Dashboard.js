@@ -326,30 +326,30 @@ const CmpDashboard = () => {
             </div>
           </div>
             <Swiper
-              effect={'coverflow'}
-              grabCursor={true}
-              slidesPerView={3}
-              centeredSlides={true}
-              spaceBetween={30}
-              coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-              // navigation={{
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={2.2}   
+            spaceBetween={50}   
+            coverflowEffect={{
+              rotate: 0,     
+              stretch: 0,   
+              depth: 90,     
+              modifier: 1,   
+              slideShadows: false,
+            }}
+ // navigation={{
               //   nextEl: ".custom-next",
               //   prevEl: ".custom-prev",
               // }}
               // onSwiper={(swiper) => {
               //   swiperRef.current = swiper; 
               // }}
-              onSwiper={(swiper) => (swiperRefs.current['Ai-recommendation-swiper'] = swiper)}
-              modules={[EffectCoverflow,Navigation]}
-              className="mySwiper"
-            >
-              <SwiperSlide>
+            onSwiper={(swiper) => (swiperRefs.current["Ai-recommendation-swiper"] = swiper)}
+            modules={[Navigation, EffectCoverflow]}
+            className="mySwiper"
+          >
+              <SwiperSlide className="transition-transform duration-300">
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
@@ -375,7 +375,7 @@ const CmpDashboard = () => {
                     </ul>
                   </div>
               </SwiperSlide>
-              <SwiperSlide>
+              <SwiperSlide className="transition-transform duration-300">
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Maximize marginal returns</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Some channels have reached saturation; incremental spend yields diminishing returns</p>
@@ -395,7 +395,7 @@ const CmpDashboard = () => {
                     </ul>
                   </div>
               </SwiperSlide>
-              <SwiperSlide>
+              <SwiperSlide className="transition-transform duration-300">
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
@@ -421,7 +421,7 @@ const CmpDashboard = () => {
                     </ul>
                   </div>
               </SwiperSlide>
-              <SwiperSlide>
+              <SwiperSlide className="transition-transform duration-300">
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
                     <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
                     <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
@@ -660,8 +660,8 @@ const CmpDashboard = () => {
 
         <section className="bg-red-orange-gradient text-white py-6 mt-8 mb-8 rounded-2xl flex justify-between px-6">
           <div>
-            <h2 className='text-sprk-dark-2 text-white'>Curious about your past performance?</h2>
-            <p className="text-sm text-white">Let our AI dig into your history to answer your questions and reveal useful insights.</p>
+            <h2 className='text-base text-white font-bold'>Curious about your past performance?</h2>
+            <p className="text-sm text-white font-medium">Let our AI dig into your history to answer your questions and reveal useful insights.</p>
           </div>
           <button className="btn-default flex gap-1">
             <Image 
