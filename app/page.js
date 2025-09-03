@@ -22,6 +22,11 @@ export default function Home() {
       title: "Scenario Detail",
       url: "/marketing/campaign/scenario-detail",
     },
+    {
+      title: "Marketing Modal Components",
+      url: "/marketing/marketing-modal-component",
+    },
+    
   ];
   return (
     <>
