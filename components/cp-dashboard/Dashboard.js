@@ -12,6 +12,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Menu, MenuItem } from '@mui/material';
 import { Inter } from 'next/font/google';
+import { handleArrowState } from '../../utils/Swiper';
 
 const CmpDashboard = () => {
 
@@ -215,26 +216,32 @@ const CmpDashboard = () => {
             <h2 className='sec-title text-sprk-dark-2'>Your tailored setup guide!</h2>
             <p className='sec-desc text-sprk-grey'>Let’s assist you in kickstarting your journey step-by-step by organising things for you.</p>
           </div>
-          <div className="relative w-[40%]">
+          <div className="relative w-[40%] top-2 right-6 pr-2">
             <div className="absolute top-4 left-[10.5%] right-[8%] h-[2px] bg-gray-300"></div>
             <ul className="flex items-center justify-between w-full relative z-10">
               <li className="flex flex-col items-center">
+                <div className='bg-[#FFFF] px-2'>
                 <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
                   1
                 </p>
-                <p className="mt-2 text-xs text-center">Add a new campaign</p>
+                </div>
+                <p className="text-xs text-center">Add a new campaign</p>
               </li>
               <li className="flex flex-col items-center">
+                <div className='bg-[#FFFF] px-2'>
                 <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
                   2
                 </p>
-                <p className="mt-2 text-sm text-center">Create scenario</p>
+                </div>
+                <p className="text-xs text-center">Create scenario</p>
               </li>
               <li className="flex flex-col items-center">
+                <div className='bg-[#FFFF] px-2'>
                 <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
                   3
                 </p>
-                <p className="mt-2 text-sm text-center">Simulate report</p>
+                </div>
+                <p className="text-xs text-center">Simulate report</p>
               </li>
             </ul>
           </div>
@@ -260,11 +267,11 @@ const CmpDashboard = () => {
               <Image src="/assets/icons/market-graph.svg" alt="Icon" width={14} height={14} />
             </div>
           </div>
-          <span className="inline-flex gap-2 text-sm text-red-500 rounded-xl bg-[#F9E0DE] py-[2px] px-[8px]">
+          <span className="metric-card-label green">
             - 6.9 %
-              <Image src="/assets/icons/arrow-left.svg" className="text-red" alt="Icon" width={16} height={16} />
+              <Image src="/assets/icons/arrow-left.svg" className="arrow-red" alt="Icon" width={16} height={16} />
           </span>
-        </div>
+        </div>  
 
         <div className="flex-1 min-w-0 rounded-2xl shadow-lg p-6 border border-gray-200 relative overflow-hidden card-bg">
           <div className="relative z-10 flex justify-between pb-4">
@@ -280,9 +287,9 @@ const CmpDashboard = () => {
               <Image src="/assets/icons/dollar.svg" alt="Icon" width={14} height={14} />
             </div>
           </div>
-          <span className="inline-flex gap-2 text-sm text-red-500 rounded-xl bg-[#F9E0DE] py-[2px] px-[8px]">
+          <span className="metric-card-label red">
             - 13.9%
-           <Image src="/assets/icons/arrow-left.svg" className="text-red" alt="Icon" width={16} height={16} />
+           <Image src="/assets/icons/arrow-left.svg" className="arrow-red" alt="Icon" width={16} height={16} />
           </span>
         </div>
 
@@ -299,9 +306,9 @@ const CmpDashboard = () => {
               <Image src="/assets/icons/market-chart.svg" alt="Icon" width={14} height={14} />
             </div>
           </div>
-          <span className="inline-flex gap-2 text-sm text-red-500 rounded-xl bg-[#F9E0DE] py-[2px] px-[8px]">
+          <span className="metric-card-label blue">
             - 12.0%
-             <Image src="/assets/icons/arrow-left.svg" className="text-red" alt="Icon" width={16} height={16} />
+             <Image src="/assets/icons/arrow-left.svg" className="arrow-red" alt="Icon" width={16} height={16} />
           </span>
         </div>
       </div>
@@ -348,6 +355,12 @@ const CmpDashboard = () => {
               onSwiper={(swiper) => (swiperRefs.current['Ai-recommendation-swiper'] = swiper)}
               modules={[EffectCoverflow,Navigation]}
               className="mySwiper"
+              onSlideChange={(swiper) =>
+                handleArrowState("Ai-recommendation-swiper",swiper, ".custom-prev", ".custom-next")
+              }
+              onAfterInit={(swiper) =>
+                handleArrowState("Ai-recommendation-swiper",swiper, ".custom-prev", ".custom-next")
+              }
             >
               <SwiperSlide>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
@@ -467,7 +480,7 @@ const CmpDashboard = () => {
         </section> */}
 
         {/* Campaign Section */}
-        <section className="mt-14">
+        <section className="mt-14 get-inspired-section">
           <div className='flex justify-between'>
             <div className='w-[60%]'>
               <h2 className="sec-title text-sprk-dark-2">Get Inspired</h2>
@@ -498,11 +511,25 @@ const CmpDashboard = () => {
             //   swiperRef1.current = swiper;
             // }}
             onSwiper={(swiper) => (swiperRefs.current['get-inspired-swiper'] = swiper)}
+              onSlideChange={(swiper) =>
+                handleArrowState("get-inspired-swiper", swiper,".get-inspired-section .custom-prev", ".get-inspired-section .custom-next")
+            }
+            onAfterInit={(swiper) =>{
+              handleArrowState("get-inspired-swiper",swiper, ".get-inspired-section .custom-prev", ".get-inspired-section .custom-next")
+            }
+            }
             >
               <SwiperSlide>
                       {/* Card 1 with Swiper */}
             <div className="flex-1 min-w-[250px] rounded-xl border border-[#F1F1F1] shadow overflow-hidden">
-              <Swiper navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev"}}modules={[Navigation]} className="mySwiper">
+              <Swiper navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev"}}modules={[Navigation]} 
+              className="mySwiper"
+              onSlideChange={(swiper) =>
+                  handleArrowState(swiper, ".custom-prev", ".custom-next")
+                }
+                onAfterInit={(swiper) =>
+                  handleArrowState(swiper, ".custom-prev", ".custom-next")
+                }>
                   <SwiperSlide>
                     <Image
                             src="/assets/images/get-inspired.png"
@@ -675,15 +702,15 @@ const CmpDashboard = () => {
           </button>
         </section>
 
-        <section className='bg-black py-[30px] rounded-2xl '>
-          <div className='flex gap-[39.5px]'>
-            <div className='w-[55%] pl-6 py-[23px]'>
-              <h3 className='text-2xl font-extrabold text-sprk-light-1 pb-6 w-[56%]'>Start your end-to-end marketing analysis today with our tailored solutions.</h3>
+        <section className="bg-[url('/assets/images/get-in-touch-bg.png')] py-[30px] bg-cover rounded-2xl">
+          <div className='flex gap-[39.5px] pr-6'>
+            <div className='w-[36%] pl-6 py-[23px]'>
+              <h3 className='text-2xl font-extrabold text-sprk-light-1 pb-6'>Start your end-to-end marketing analysis today with our tailored solutions.</h3>
               <button className="btn-default ">Get in Touch</button>
             </div>
-            <div>
+            <div className='w-[64%] pr-6'>
               <ul className='flex item-center gap-6'>
-                <li className='flex justify-between bg-[linear-gradient(126.16deg,rgba(82,82,82,0.24)-3.39%,rgba(0,30,41,0.4)58.7%)] rounded-xl border border-[#525252] shadow overflow-hidden py-[30px] px-6'>
+                <li className='flex-1 flex justify-between bg-[linear-gradient(126.16deg,rgba(82,82,82,0.24)-3.39%,rgba(0,30,41,0.4)58.7%)] rounded-xl border border-[#525252] shadow overflow-hidden py-[33px] px-6'>
                   <div>
                     <h2 className='text-xl font-bold text-sprk-light-1 pb-6'>Influencers</h2>
                     <ul className="card-list">
@@ -700,7 +727,7 @@ const CmpDashboard = () => {
                       className="bg-white h-[40px]"
                     />
                 </li>
-                 <li className='flex justify-between bg-[linear-gradient(126.16deg,rgba(82,82,82,0.24)-3.39%,rgba(0,30,41,0.4)58.7%)] rounded-xl border border-[#525252] shadow overflow-hidden py-[30px] px-6'>
+                 <li className='flex-1 flex justify-between bg-[linear-gradient(126.16deg,rgba(82,82,82,0.24)-3.39%,rgba(0,30,41,0.4)58.7%)] rounded-xl border border-[#525252] shadow overflow-hidden py-[33px] px-6'>
                   <div>
                     <h2 className='sec-title text-sprk-light-1 pb-6'>Creatives</h2>
                     <ul className="card-list">

@@ -17,7 +17,7 @@ import CpScenarioCard from "../cp-scenario-card/CpScenarioCard";
 
 export default function CmpCampaign() {
     const [showToast, setShowToast] = useState(true);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [helpModal, sethelpModal] = useState(false);
     return (
         <main className="p-6 space-y-6">
@@ -33,7 +33,6 @@ export default function CmpCampaign() {
                     </p>
                 </div>
                 <div className="flex items-center gap-6">
-                    <SelectPrimary />
                     <button className="btn-outline">
                         + Add New Campaigns
                     </button>
@@ -74,7 +73,7 @@ export default function CmpCampaign() {
                 show={showToast}
                 onClose={() => setShowToast(true)}
                 /> */}
-                <AddNewCampaign open={open} handleClose={() => setOpen(true)} />
+                <AddNewCampaign open={open} handleClose={() => setOpen(false)} />
                 <HelpModal
                 open={helpModal}
                 title="Got a question? We’re here to help."
