@@ -18,6 +18,15 @@ export default function Home() {
       title: "Marketing Campaign Kpi Target",
       url: "/marketing/campaign/campaign-kpi-target",
     },
+     {
+      title: "Scenario Detail",
+      url: "/marketing/campaign/scenario-detail",
+    },
+    {
+      title: "Marketing Modal Components",
+      url: "/marketing/marketing-modal-component",
+    },
+    
   ];
   return (
     <>
