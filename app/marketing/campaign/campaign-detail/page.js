@@ -29,8 +29,8 @@ export default function CampaignDetail() {
             <p className='breadcrumb-item'>Details: Campaign Name</p>
         </div>
         <div className='bg-white rounded-2xl shadow-sm border border-gray-200 p-6'>
-            <div className='flex items-center justify-between'>
-                <h2 className='sec-title mb-3 flex items-center'>
+            <div className='flex items-center justify-between relative'>
+                <h2 className='sec-title mb-3 flex'>
                     Campaign Name
                     <span className=' ml-4 text-xs font-medium px-2 py-1 bg-[#FFF0E2] text-[#995D25] rounded-full flex items-center gap-1'>
                         <Image src="/assets/icons/Time.svg" alt='Time Icon' width={12} height={12} />
@@ -48,7 +48,7 @@ export default function CampaignDetail() {
                             <Image src="/assets/icons/dots.svg" alt='' width={14} height={14} />
                         </button>
                         {open ? (
-                            <Box className="bg-white rounded-xl shadow-sm border border-gray-200 py-2 px-[18px]">
+                            <Box className="absolute right-0 bg-white rounded-xl shadow-sm border border-gray-200 py-2 px-[18px] opacity-100 transition-opacity duration-200 z-50">
                                 <p className='text-xs font-medium py-2'>Edit</p>
                                 <p className='text-xs font-medium py-2'>Delete</p>
                             </Box>
@@ -56,7 +56,7 @@ export default function CampaignDetail() {
                     </Box>
                 </ClickAwayListener>          
             </div>
-            <p className='text-xs text-sprk-dark-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae.</p>
+            <p className='text-xs text-sprk-dark-2 font-medium'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae.</p>
             <ul className='flex justify-between mt-6'>
                 <li>
                     <p className='text-xs text-[#60607B] font-medium'>Sub Brand</p>
@@ -78,7 +78,7 @@ export default function CampaignDetail() {
         </div>
 
         <div className='flex item-center gap-5 mt-8 rounded-2xl  w-full mb-6 py-6 shadow-lg border border-gray-200 relative'>
-                  <Image src="/assets/images/thumb-up-dynamic.png" alt="Home Icon" width={84} height={84} className="bg-[url('/assets/images/Vector.png')]" />
+                  <Image src="/assets/images/notes-dynamic.svg" alt="Home Icon" width={84} height={84} className="bg-[url('/assets/images/Vector.png')]" />
                   <div className='flex justify-between items-center w-[88%]'>
                     <div className=''>
                         <h2 className='sec-title text-sprk-dark-2'>Create new scenario based on target, budget, threshold or custom!</h2>

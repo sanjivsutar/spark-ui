@@ -18,6 +18,7 @@ const CpCampaignKPITarget = () => {
   const [KPIName, setKPIName] = useState('TOM');
   const [drivers, setDrivers] = useState(['OTT spends']);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedCard, setSelectedCard] = useState("kpi");
 
 //   custom budget 
   const [open, setOpen] = useState(false);
@@ -72,7 +73,7 @@ const CpCampaignKPITarget = () => {
                         </FormControl>
                     </div>
                     <div className="flex flex-wrap gap-6 my-8">
-                        <div className="cp-scenario-card active">
+                        <div className={`cp-scenario-card ${selectedCard === "kpi" ? "active" : null}`} onClick={() => setSelectedCard("kpi")}>
                             <div>
                                 <p className="title">KPI Target</p>
                                 <p className="desc">Targeted growth goals</p>
@@ -80,7 +81,7 @@ const CpCampaignKPITarget = () => {
                             <Image src="/assets/icons/Series-search.svg" alt="" width={55} height={55} />
                         </div>
 
-                        <div className="cp-scenario-card">
+                        <div className={`cp-scenario-card ${selectedCard === "budget" ? "active" : null}`} onClick={() => setSelectedCard("budget")}>
                             <div>
                                 <p className="title">Budget</p>
                                 <p className="desc">By budget split</p>
@@ -88,7 +89,7 @@ const CpCampaignKPITarget = () => {
                             <Image src="/assets/icons/Calculator.svg" alt="" width={55} height={55} />
                         </div>
 
-                        <div className="cp-scenario-card">
+                        <div className={`cp-scenario-card ${selectedCard === "threshold" ? "active" : null}`} onClick={() => setSelectedCard("threshold")}>
                             <div>
                                 <p className="title">Threshold</p>
                                 <p className="desc">Most favourable outcome</p>
@@ -96,7 +97,13 @@ const CpCampaignKPITarget = () => {
                             <Image src="/assets/icons/Form.svg" alt="" width={55} height={55} />
                         </div>
 
-                        <div className="cp-scenario-card" onClick={() => setOpen(true)}>
+                        <div 
+                            className={`cp-scenario-card ${selectedCard === "custom" ? "active" : null}`} 
+                            onClick={() => {
+                                setSelectedCard("custom")
+                                setOpen(true)
+                            }}
+                        >
                             <div>
                                 <p className="title">Custom</p>
                                 <p className="desc">Add preferred budget</p>
@@ -171,9 +178,9 @@ const CpCampaignKPITarget = () => {
                 <div>
                     <div className='flex justify-between items-center my-[31px]'>
                         <h2 className='sec-title text-sprk-dark-2'>Select Drivers</h2>
-                        <div className='flex'>
+                        <div className='flex items-center'>
                             <button className='mr-5 btn-link'>Select All</button>
-                            <button className='btn-outline flex gap-1'>
+                            <button className='btn-outline flex items-center gap-2'>
                                 <Image src="/assets/icons/Helper-management.svg" alt='' width={12} height={12} />
                                 Manage Constraints
                             </button>
