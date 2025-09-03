@@ -66,7 +66,7 @@ export default function AddNewCampaign({ open, handleClose }) {
 
   const handleSubmit = () => {
     console.log("Submitting Campaign:", formData);
-    handleClose(); // close modal
+    handleClose();
   };
 
   return (
@@ -74,7 +74,9 @@ export default function AddNewCampaign({ open, handleClose }) {
       <Box sx={style}>
         <div className="flex items-center justify-between mb-6">
             <div className="sec-title">Add New Campaign</div>
-            <Image src="/assets/images/close.png" alt="Icon" width={20} height={20}/>
+            <button onClick={handleClose}>
+              <Image src="/assets/images/close.png" alt="Icon" width={20} height={20}/>
+            </button>
         </div>
         <Stack direction="row" spacing={2} mb={2}>
           <div className="felx flex-col">
@@ -90,6 +92,7 @@ export default function AddNewCampaign({ open, handleClose }) {
           <div className="mb-2">Sub Brand</div>
           <SelectPrimary
             placeholder="Sub Brand"
+            label="Sub Brand"
             value={formData.subBrand}
             onChange={handleChange("subBrand")}
             items={dropdownOptions.subBrands}
@@ -158,13 +161,16 @@ export default function AddNewCampaign({ open, handleClose }) {
             placeholder="Text input"
             value={formData.description}
             onChange={handleChange("description")}
+            InputProps={{
+              sx: { borderRadius: "8px" }, 
+            }}
         />
 
         <Stack direction="row" justifyContent="flex-end" spacing={2} mt={4}>
           <button className="btn-outline" onClick={handleClose}>
             Cancel
           </button>
-          <button className="btn-dark btn-default" onClick={handleSubmit}>
+          <button className="btn-dark rounded-xl py-3 px-4" onClick={handleSubmit}>
             Add Campaign
           </button>
         </Stack>
