@@ -14,6 +14,7 @@ import ToastMessage from '../../components/cp-toast-message/CpToastMessage';
 import AddNewCampaign from '../../components/add-new-campaign-modal/AddNewCampaign';
 import HelpModal from '../../components/cp-help-modal/CpHelpModal';
 import CpScenarioCard from "../cp-scenario-card/CpScenarioCard";
+import CpTimelineDropdown from "../dropdown/CpTimelineDropdown";
 
 export default function CmpCampaign() {
     const [showToast, setShowToast] = useState(true);
@@ -33,7 +34,8 @@ export default function CmpCampaign() {
                     </p>
                 </div>
                 <div className="flex items-center gap-6">
-                    <button className="btn-outline">
+                    <CpTimelineDropdown/>
+                    <button onClick={() => sethelpModal(true)} className="btn-outline px-4 py-3">
                         + Add New Campaigns
                     </button>
                 </div>
@@ -73,8 +75,7 @@ export default function CmpCampaign() {
                 show={showToast}
                 onClose={() => setShowToast(true)}
                 /> */}
-                <AddNewCampaign open={open} handleClose={() => setOpen(false)} />
-                <HelpModal
+                {/* <HelpModal
                 open={helpModal}
                 title="Got a question? We’re here to help."
                 description="Ask us anything about our services or platform. Our team will get back to you shortly."
@@ -84,7 +85,7 @@ export default function CmpCampaign() {
                 onConfirm={() => {
                 sethelpModal(false);
                 }}
-            />
+            /> */}
             </div>
         </main>
     );
