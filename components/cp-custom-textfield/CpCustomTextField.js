@@ -14,6 +14,9 @@ export default function CustomTextField({
     <TextField
       label={label}
       placeholder={placeholder}
+      InputProps={{
+        sx : { borderRadius: 2, height: 44}
+      }}
       value={value}
       onChange={onChange}
       fullWidth={fullWidth}

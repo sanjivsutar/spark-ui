@@ -253,6 +253,24 @@
     rgba(0, 30, 41, 0.4) 40%,  
     rgba(0, 30, 41, 0.4) 100%  
   );
-}
+  }
+  &.swiper-button-disabled{
+    @apply opacity-50 cursor-not-allowed;
+  }
+  &.disable{
+    @apply opacity-50 cursor-not-allowed;
+  }
 }
 
+.metric-card-label{
+  @apply inline-flex gap-2 text-sm rounded-xl bg-transparent py-[2px] px-[8px];
+  &.red{
+    @apply text-[#DC2F23] bg-[#F9E0DE];
+  }
+  &.green{
+    @apply text-[#257F4E] bg-[#E2F8EC];
+  }
+  &.blue{
+    @apply text-[#022B59] bg-[#E6F0FB];
+  }
+}
