@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import SelectPrimary from "../cp-select-primary/CpSelectPrimary";
 import CustomTextField from "../cp-custom-textfield/CpCustomTextField";
 import { BorderColor } from "@mui/icons-material";
-import BasicDatePicker from "../cp-custom-calander/CpCustomCalander";
+import BasicDateRangeCalendar from "../cp-custom-calander/CpCustomCalander";
 
 const style = {
   position: "absolute",
@@ -129,11 +129,11 @@ export default function AddNewCampaign({ open, handleClose }) {
         <Stack direction="row" spacing={2} mb={2}>
           <div className="felx flex-col">
           <div className="mb-2">Start Date</div>
-          <BasicDatePicker/>
+          <BasicDateRangeCalendar/>
           </div>
           <div className="felx flex-col">
           <div className="mb-2">End Date</div>
-          <BasicDatePicker/>
+          <BasicDateRangeCalendar/>
           </div>
         </Stack>
 
@@ -155,7 +155,7 @@ export default function AddNewCampaign({ open, handleClose }) {
             fullWidth
             multiline
             minRows={3}
-            placeholder="Text input"
+            placeholder="Description here"
             value={formData.description}
             onChange={handleChange("description")}
         />
