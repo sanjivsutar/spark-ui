@@ -1,68 +1,454 @@
 "use client";
 import React, { useRef, useState } from "react";
-// import CpHeader from '../../components/cp-user-header/CpHeader';
-// import CpTitle from '@/components/cp-title/CpTitle';
+import ReactECharts from "echarts-for-react";
+import { Tab, Tabs, Box } from "@mui/material";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-// import required modules
 import { Pagination, Navigation, EffectCoverflow } from "swiper/modules";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Menu, MenuItem } from "@mui/material";
 import { Inter } from "next/font/google";
-import { handleArrowState } from '../../utils/Swiper';
+import { handleArrowState } from "../../utils/Swiper";
 import CpTimelineDropdown from "../dropdown/CpTimelineDropdown";
+import { styled } from "@mui/material/styles"; // Added missing import
+import { DataGrid } from "@mui/x-data-grid";
+// Define columns for StyledDataGrid
+const columns = [
+  { field: "brands", headerName: "Brands", width: 150 },
+  { field: "value", headerName: "Value", width: 120 },
+  { field: "volume", headerName: "Volume", width: 120 },
+  { field: "valueShare", headerName: "Value Share", width: 140 },
+  { field: "volumeShare", headerName: "Volume Share", width: 160 },
+  { field: "nd", headerName: "ND", width: 120 },
+  { field: "wd", headerName: "WD", width: 120 },
+];
+
+// Define rows for StyledDataGrid
+const rows = [
+  {
+    id: 1,
+    brands: "HP",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 2,
+    brands: "Dell",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 3,
+    brands: "Acer",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 4,
+    brands: "Lenovo",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 5,
+    brands: "Asus",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 6,
+    brands: "Apple",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 7,
+    brands: "HP",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 8,
+    brands: "Dell",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 9,
+    brands: "Acer",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 10,
+    brands: "Lenovo",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 11,
+    brands: "Asus",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+  {
+    id: 12,
+    brands: "Apple",
+    value: 128.45,
+    volume: 58.72,
+    valueShare: 47.35,
+    volumeShare: 30.21,
+    nd: "120.33%",
+    wd: "125.14%",
+  },
+];
+
+// Define column grouping model for StyledDataGrid
+const columnGroupingModel = [
+  {
+    groupId: "data",
+    headerName: "Data",
+    children: [{ field: "brands" }],
+  },
+  {
+    groupId: "kpi",
+    headerName: "KPI",
+    children: [
+      { field: "value" },
+      { field: "volume" },
+      { field: "valueShare" },
+      { field: "volumeShare" },
+    ],
+  },
+  {
+    groupId: "drivers",
+    headerName: "Drivers",
+    children: [{ field: "nd" }, { field: "wd" }],
+  },
+];
+
+// Styled DataGrid component
+const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+  border: "none",
+  borderRadius: "12px",
+  overflow: "hidden",
+  backgroundColor: "#fff",
+
+  // column header background
+  "&.MuiDataGrid-columnHeaders": {
+    background: "#003366",
+    color: "#fff",
+    fontWeight: 600,
+    borderBottom: "1px solid #004080",
+  },
+
+  // group headers
+  "&.MuiDataGrid-columnHeaderGroup": {
+    background: "#003366",
+    color: "#fff",
+    fontWeight: 700,
+    textAlign: "center",
+    borderRight: "1px solid #004080",
+  },
+
+  // column header borders
+  "&.MuiDataGrid-columnHeader": {
+    borderRight: "1px solid #ddd",
+  },
+
+  // cell borders
+  "&.MuiDataGrid-cell": {
+    borderRight: "1px solid #ddd",
+    borderBottom: "1px solid #ddd",
+  },
+
+  // alternating row background
+  "&.MuiDataGrid-row:nth-of-type(odd)": {
+    backgroundColor: "#f9f9f9",
+  },
+
+  // row hover effect
+  "&.MuiDataGrid-row:hover": {
+    backgroundColor: "#f1f8ff",
+  },
+
+  // footer styling
+  "& .MuiDataGrid-footerContainer": {
+    backgroundColor: "#000",
+    color: "#fff",
+    borderTop: "none",
+    fontWeight: 600,
+  },
+
+  // pagination controls
+  "& .MuiTablePagination-root": {
+    color: "#fff",
+  },
+  "& .MuiTablePagination-actions svg": {
+    fill: "#fff",
+  },
+}));
+const FunnelChart = ({ title, data }) => {
+  const option = {
+    title: {
+      text: title,
+      left: "left",
+      top: 10,
+      textStyle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#333",
+      },
+    },
+    tooltip: {
+      trigger: "item",
+      formatter: (params) => {
+        return `${params.name}<br/>${params.value}<br/>+${params.data.growth}% ↑`;
+      },
+    },
+    legend: {
+      show: false,
+    },
+    series: [
+      {
+        name: "Funnel",
+        type: "funnel",
+        orient: "horizontal",
+        funnelAlign: "center",
+        left: "5%",
+        top: "15%",
+        bottom: "15%",
+        width: "90%",
+        minSize: "25%",
+        maxSize: "100%",
+        sort: "none",
+        gap: 2,
+        label: {
+          show: true,
+          position: "inside",
+          color: "#fff",
+          fontSize: 14,
+          fontWeight: "bold",
+          formatter: (params) => {
+            return `${params.value}\n+${params.data.growth}% ↑`;
+          },
+          verticalAlign: "middle",
+        },
+        labelLine: {
+          show: false,
+        },
+        itemStyle: {
+          borderRadius: 10,
+          opacity: 0.9,
+          emphasis: {
+            opacity: 1,
+          },
+        },
+        emphasis: {
+          label: {
+            fontSize: 16,
+          },
+        },
+        data: data.map((item) => ({
+          value: item.value,
+          name: item.name,
+          growth: item.growth,
+          itemStyle: {
+            color: {
+              type: "linear",
+              x: 0,
+              y: 0,
+              x2: 1,
+              y2: 0,
+              colorStops: [
+                { offset: 0, color: item.colorStart },
+                { offset: 1, color: item.colorEnd },
+              ],
+            },
+          },
+        })),
+      },
+    ],
+  };
+
+  return (
+    <div className="w-1/2 p-5 border border-gray-200 rounded-lg bg-white">
+      <ReactECharts
+        option={option}
+        style={{ height: "356px", width: "100%" }}
+      />
+      <ul className="chart-legend-list mt-2 space-y-1 text-sm text-gray-800 flex flex-col">
+        <li className="chart-legend-item flex justify-between items-center py-5 border-b border-[#CECED6]">
+          <p className="chart-legend-text lhs-panel w-1/2 text-left text-[14px] text-[#60607B] font-semibold">
+            Market
+          </p>
+          <p className="chart-legend-text rhs-panel w-1/2 text-right text-[14px] text-[#0D0D11] font-semibold">
+            4893{" "}
+            <span
+              className="bg-[#E2F8EC] text-[12px] text-[#257F4E]"
+              style={{ padding: "4px 6px", borderRadius: "15px" }}
+            >
+              (+3.04%)
+            </span>
+          </p>
+        </li>
+        <li className="chart-legend-item flex justify-between items-center py-5 border-b border-[#CECED6]">
+          <p className="chart-legend-text lhs-panel w-1/2 text-left font-semibold text-[14px] text-[#60607B]">
+            Brand
+          </p>
+          <p className="chart-legend-text rhs-panel w-1/2 text-right font-semibold text-[14px] text-[#0D0D11]">
+            2621
+            <span
+              className="bg-[#E2F8EC] text-[12px] text-[#257F4E]"
+              style={{ padding: "4px 6px", borderRadius: "15px" }}
+            >
+              (+3.14%)
+            </span>
+          </p>
+        </li>
+        <li className="chart-legend-item flex justify-between items-center py-1">
+          <p className="chart-legend-text lhs-panel w-1/2 text-left font-semibold text-[14px] text-[#60607B]">
+            Share
+          </p>
+          <p className="chart-legend-text rhs-panel w-1/2 text-right font-semibold text-[14px] text-[#0D0D11]">
+            53%
+          </p>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
 const CmpDashboard = () => {
+  const [value, setValue] = useState("one");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const valueGrowthData = [
+    {
+      value: 4000,
+      name: "2024",
+      growth: 4.04,
+      colorStart: "#FF5722",
+      colorEnd: "#E91E63",
+    },
+    {
+      value: 6547,
+      name: "2025",
+      growth: 4.04,
+      colorStart: "#9C27B0",
+      colorEnd: "#673AB7",
+    },
+    {
+      value: 6547,
+      name: "2026",
+      growth: 4.04,
+      colorStart: "#7B1FA2",
+      colorEnd: "#512DA8",
+    },
+    {
+      value: 8765,
+      name: "2027",
+      growth: 4.04,
+      colorStart: "#8E24AA",
+      colorEnd: "#5E35B1",
+    },
+  ];
+
+  const volumeGrowthData = [
+    {
+      value: 173,
+      name: "2024",
+      growth: 4.04,
+      colorStart: "#FF5722",
+      colorEnd: "#E91E63",
+    },
+    {
+      value: 173,
+      name: "2025",
+      growth: 4.04,
+      colorStart: "#9C27B0",
+      colorEnd: "#673AB7",
+    },
+    {
+      value: 106,
+      name: "2026",
+      growth: 4.04,
+      colorStart: "#7B1FA2",
+      colorEnd: "#512DA8",
+    },
+    {
+      value: 91,
+      name: "2027",
+      growth: 4.04,
+      colorStart: "#8E24AA",
+      colorEnd: "#5E35B1",
+    },
+  ];
+
+  const [dateRangeInfo, setDateRangeInfo] = useState(null);
   const [exportFormat, setExportFormat] = useState(null);
 
-  //  const swiperRef = useRef(null);
-  //  const swiperRef1 = useRef(null);
   const swiperRefs = useRef({});
 
   const goNextSlide = (id) => {
-    // if (swiperRef.current) swiperRef.current.slideNext();
-    // if (swiperRef1.current) swiperRef1.current.slideNext();
     swiperRefs.current[id]?.slideNext();
   };
 
   const goPrevslide = (id) => {
-    // if (swiperRef.current) swiperRef.current.slidePrev();
-    // if (swiperRef1.current) swiperRef1.current.slidePrev();
     swiperRefs.current[id]?.slidePrev();
   };
 
   return (
     <div className="">
-      {/* Navbar */}
-      {/* <header className="bg-black text-white p-4 flex justify-between items-center">
-        <Image
-        src="/assets/images/logo.png" 
-        alt="logo" 
-        width={85} 
-        height={32} 
-        className="rounded-xl"
-      />
-        <nav className="flex gap-6">
-          <a href="#" className="header-nav-border">Marketing Strategy</a>
-          <a href="#">Creatives</a>
-          <a href="#">Influencers</a>
-          <a href="#">User Management</a>
-        </nav>
-        <button className="btn-gradient text-white">
-          <Image 
-            src="/assets/icons/Shape.svg" 
-            alt="Home Icon" 
-            width={14} 
-            height={14} 
-            className=""
-          />
-          Spark AI Insights
-        </button>
-      </header> */}
-
       {/* Main Content */}
       <main className="">
         <div className="flex justify-between items-center">
@@ -70,7 +456,7 @@ const CmpDashboard = () => {
             Welcome Meha,
           </h1>
           <div style={{ display: "flex", gap: "1rem" }}>
-           <CpTimelineDropdown/>
+            <CpTimelineDropdown />
             <div>
               <button
                 className="font-semibold text-[13px] text-[#022B59] rounded-lg bg-white flex items-center gap-2 border border-[#022B59] py-2 px-4"
@@ -89,7 +475,7 @@ const CmpDashboard = () => {
                 open={Boolean(exportFormat)}
                 PaperProps={{
                   sx: {
-                    width: exportFormat ? exportFormat.offsetWidth : "auto", // Match button width
+                    width: exportFormat ? exportFormat.offsetWidth : "auto",
                   },
                 }}
                 onClose={() => setExportFormat(null)}
@@ -100,9 +486,9 @@ const CmpDashboard = () => {
                     fontWeight: 500,
                     justifyContent: "center",
                     padding: "8px 16px",
-                    color: "#0D0D11", // gray-700
+                    color: "#0D0D11",
                     "&:hover": {
-                      backgroundColor: "#F3F4F6", // gray-100
+                      backgroundColor: "#F3F4F6",
                     },
                   }}
                   onClick={() => setExportFormat(null)}
@@ -115,9 +501,9 @@ const CmpDashboard = () => {
                     fontWeight: 500,
                     justifyContent: "center",
                     padding: "8px 16px",
-                    color: "#0D0D11", // gray-700
+                    color: "#0D0D11",
                     "&:hover": {
-                      backgroundColor: "#F3F4F6", // gray-100
+                      backgroundColor: "#F3F4F6",
                     },
                   }}
                   onClick={() => setExportFormat(null)}
@@ -130,9 +516,9 @@ const CmpDashboard = () => {
                     fontWeight: 500,
                     justifyContent: "center",
                     padding: "8px 16px",
-                    color: "#0D0D11", // gray-700
+                    color: "#0D0D11",
                     "&:hover": {
-                      backgroundColor: "#F3F4F6", // gray-100
+                      backgroundColor: "#F3F4F6",
                     },
                   }}
                   onClick={() => setExportFormat(null)}
@@ -144,7 +530,7 @@ const CmpDashboard = () => {
           </div>
         </div>
 
-        <div className="flex gap-5 rounded-2xl  w-full mb-6  shadow-lg border border-gray-200 relative">
+        <div className="flex gap-5 rounded-2xl w-full mb-6 shadow-lg border border-gray-200 relative">
           <div className="rounded-xl overflow-hidden">
             <Image
               src="/assets/images/thumb-with-bg.png"
@@ -167,32 +553,32 @@ const CmpDashboard = () => {
               <div className="absolute top-4 left-[10.5%] right-[8%] h-[2px] bg-gray-300"></div>
               <ul className="flex items-center justify-between w-full relative z-10">
                 <li className="flex flex-col items-center">
-                  <div className='bg-[#FFFF] px-2'>
-                <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
-                    1
-                  </p>
+                  <div className="bg-[#FFFF] px-2">
+                    <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
+                      1
+                    </p>
                   </div>
-                <p className="text-xs text-center">Add a new campaign</p>
+                  <p className="text-xs text-center">Add a new campaign</p>
                 </li>
                 <li className="flex flex-col items-center">
-                  <div className='bg-[#FFFF] px-2'>
-                <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
-                    2
-                  </p>
+                  <div className="bg-[#FFFF] px-2">
+                    <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
+                      2
+                    </p>
                   </div>
-                <p className="text-xs text-center">Create scenario</p>
+                  <p className="text-xs text-center">Create scenario</p>
                 </li>
                 <li className="flex flex-col items-center">
-                  <div className='bg-[#FFFF] px-2'>
-                <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
-                    3
-                  </p>
+                  <div className="bg-[#FFFF] px-2">
+                    <p className="rounded-full bg-[#E6F0FB] w-[32px] h-[32px] flex items-center justify-center">
+                      3
+                    </p>
                   </div>
-                <p className="text-xs text-center">Simulate report</p>
+                  <p className="text-xs text-center">Simulate report</p>
                 </li>
               </ul>
             </div>
-            <button className="absolute top-3 right-4  text-gray-400 hover:text-gray-600">
+            <button className="absolute top-3 right-4 text-gray-400 hover:text-gray-600">
               <Image
                 src="/assets/images/close.png"
                 alt="Icon"
@@ -234,7 +620,7 @@ const CmpDashboard = () => {
                 height={16}
               />
             </span>
-          </div>  
+          </div>
 
           <div className="flex-1 min-w-0 rounded-2xl shadow-lg p-6 border border-gray-200 relative overflow-hidden card-bg">
             <div className="relative z-10 flex justify-between pb-4">
@@ -298,6 +684,152 @@ const CmpDashboard = () => {
           </div>
         </div>
 
+        {/* Key Performance Insights */}
+        <section className="mt-5 mb-5">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            textColor="primary"
+            aria-label="custom tabs with gradient indicator"
+            slotProps={{
+              indicator: {
+                sx: {
+                  background:
+                    "linear-gradient(90deg, #EC3128, #F56233, #FF9B3F)",
+                  height: 4,
+                  borderRadius: 2,
+                },
+              },
+            }}
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+            }}
+          >
+            <Tab
+              value="one"
+              label="Category Overview"
+              sx={{
+                fontWeight: 500,
+                color: "black",
+                textTransform: "none",
+                "&.Mui-selected": { color: "black", fontWeight: 700 },
+              }}
+            />
+            <Tab
+              value="two"
+              label="Competition Comparison"
+              sx={{
+                fontWeight: 500,
+                color: "black",
+                textTransform: "none",
+                "&.Mui-selected": { color: "black", fontWeight: 700 },
+              }}
+            />
+            <Tab
+              value="three"
+              label="Brand Comparison"
+              sx={{
+                fontWeight: 500,
+                color: "black",
+                textTransform: "none",
+                "&.Mui-selected": { color: "black", fontWeight: 700 },
+              }}
+            />
+            <Tab
+              value="four"
+              label="Driver Impact"
+              sx={{
+                fontWeight: 500,
+                color: "black",
+                textTransform: "none",
+                "&.Mui-selected": { color: "black", fontWeight: 700 },
+              }}
+            />
+          </Tabs>
+
+          <div className="mt-5">
+            {value === "one" && (
+              <>
+                <div className="p-5 bg-[#F2F7FD] rounded-xl flex justify-between items-center mb-5">
+                  <div className="lhs-panel w-1/2"></div>
+                  <div className="rhs-panel w-1/2 flex justify-end items-center gap-2">
+                    <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
+                      <Image
+                        src="/assets/icons/question.svg"
+                        alt=""
+                        width={18}
+                        height={18}
+                      />
+                    </span>
+                    <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
+                      <Image
+                        src="/assets/icons/question.svg"
+                        alt=""
+                        width={18}
+                        height={18}
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-5">
+                  <FunnelChart title="Value Growth" data={valueGrowthData} />
+                  <FunnelChart title="Volume Growth" data={volumeGrowthData} />
+                </div>
+              </>
+            )}
+            {value === "two" && (
+              <>
+                <div className="p-5 bg-[#F2F7FD] rounded-xl flex justify-between items-center mb-5">
+                  <div className="lhs-panel w-1/2">
+                    <h2 className="text-lg font-semibold text-[#0D0D11]">
+                      Competition Comparison
+                    </h2>
+                    <p className="text-sm text-[#60607B]">
+                      Analyze how your brand stacks up against competitors based
+                      on key performance indicators.
+                    </p>
+                  </div>
+                  <div className="rhs-panel w-1/2 flex justify-end items-center gap-2">
+                    <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
+                      <Image
+                        src="/assets/icons/question.svg"
+                        alt=""
+                        width={18}
+                        height={18}
+                      />
+                    </span>
+                    <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
+                      <Image
+                        src="/assets/icons/question.svg"
+                        alt=""
+                        width={18}
+                        height={18}
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-5">
+                  <Box sx={{ height: 490, width: "100%" }}>
+                    <StyledDataGrid
+                      rows={rows}
+                      columns={columns}
+                      experimentalFeatures={{ columnGrouping: true }}
+                      columnGroupingModel={columnGroupingModel}
+                      pageSizeOptions={[6]}
+                      initialState={{
+                        pagination: { paginationModel: { pageSize: 6 } },
+                      }}
+                    />
+                  </Box>
+                </div>
+              </>
+            )}
+            {value === "three" && <div>Content for Item Three</div>}
+            {value === "four" && <div>Content for Item Four</div>}
+          </div>
+        </section>
+
         {/* AI Recommendations */}
         <section className="bg-[url('/assets/images/AI-driven-bg.png')] bg-cover bg-center py-8 mt-6 rounded-xl">
           <div className="flex justify-between">
@@ -336,152 +868,219 @@ const CmpDashboard = () => {
               </button>
             </div>
           </div>
-            <Swiper
+          <Swiper
             effect={"coverflow"}
             grabCursor={true}
             centeredSlides={true}
-            slidesPerView={2.2}   
-            spaceBetween={50}   
+            slidesPerView={2.2}
+            spaceBetween={50}
             coverflowEffect={{
-              rotate: 0,     
-              stretch: 0,   
-              depth: 90,     
-              modifier: 1,   
+              rotate: 0,
+              stretch: 0,
+              depth: 90,
+              modifier: 1,
               slideShadows: false,
             }}
-              // navigation={{
-              //   nextEl: ".custom-next",
-              //   prevEl: ".custom-prev",
-              // }}
-              // onSwiper={(swiper) => {
-              //   swiperRef.current = swiper; 
-              // }}
-            onSwiper={(swiper) => (swiperRefs.current["Ai-recommendation-swiper"] = swiper)}
+            onSwiper={(swiper) =>
+              (swiperRefs.current["Ai-recommendation-swiper"] = swiper)
+            }
             modules={[Navigation, EffectCoverflow]}
             className="mySwiper"
-              onSlideChange={(swiper) =>
-                handleArrowState("Ai-recommendation-swiper",swiper, ".custom-prev", ".custom-next")
-              }
-              onAfterInit={(swiper) =>
-                handleArrowState("Ai-recommendation-swiper",swiper, ".custom-prev", ".custom-next")
-              }
+            onSlideChange={(swiper) =>
+              handleArrowState(
+                "Ai-recommendation-swiper",
+                swiper,
+                ".custom-prev",
+                ".custom-next"
+              )
+            }
+            onAfterInit={(swiper) =>
+              handleArrowState(
+                "Ai-recommendation-swiper",
+                swiper,
+                ".custom-prev",
+                ".custom-next"
+              )
+            }
           >
-              <SwiperSlide className="transition-transform duration-300">
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
-                    <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
-                    <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
-                    <ul className='card-bullet-list'>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Test alternate budget splits in “Compare Scenario”
-                      </li>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Shift budget toward high-RO  channels (Social = 45%)
-                      </li>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Add volume-push campaigns (promos, bundling, regional bursts)
-                      </li>
-                    </ul>
-                  </div>
-              </SwiperSlide>
-              <SwiperSlide className="transition-transform duration-300">
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
-                    <h3 className="text-xl text-sprk-light-1 font-bold">Maximize marginal returns</h3>
-                    <p className="sec-desc text-sprk-light-grey italic pb-6">Some channels have reached saturation; incremental spend yields diminishing returns</p>
-                    <ul className='card-bullet-list'>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Reduce investment in saturated channels.
-                      </li>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Redirect savings to underfunded, high-growth channels.
-                      </li>
-                    </ul>
-                  </div>
-              </SwiperSlide>
-              <SwiperSlide className="transition-transform duration-300">
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
-                    <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
-                    <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
-                    <ul className='card-bullet-list'>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Test alternate budget splits in “Compare Scenario”
-                      </li>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Shift budget toward high-RO  channels (Social = 45%)
-                      </li>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Add volume-push campaigns (promos, bundling, regional bursts)
-                      </li>
-                    </ul>
-                  </div>
-              </SwiperSlide>
-              <SwiperSlide className="transition-transform duration-300">
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
-                    <h3 className="text-xl text-sprk-light-1 font-bold">Time to refuel the engine</h3>
-                    <p className="sec-desc text-sprk-light-grey italic pb-6">Value is growing but volume is dropping – it’s time to fine-tune the mix</p>
-                    <ul className='card-bullet-list'>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Test alternate budget splits in “Compare Scenario”
-                      </li>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Shift budget toward high-RO  channels (Social = 45%)
-                      </li>
-                      <li>
-                        <span>
-                          <Image src="/assets/icons/Clean.svg" alt="Icon" width={16} height={16} />
-                        </span>
-                        Add volume-push campaigns (promos, bundling, regional bursts)
-                      </li>
-                    </ul>
-                  </div>
-              </SwiperSlide>
-            </Swiper>
+            <SwiperSlide className="transition-transform duration-300">
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
+                <h3 className="text-xl text-sprk-light-1 font-bold">
+                  Time to refuel the engine
+                </h3>
+                <p className="sec-desc text-sprk-light-grey italic pb-6">
+                  Value is growing but volume is dropping – it’s time to
+                  fine-tune the mix
+                </p>
+                <ul className="card-bullet-list">
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Test alternate budget splits in “Compare Scenario”
+                  </li>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Shift budget toward high-RO channels (Social = 45%)
+                  </li>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Add volume-push campaigns (promos, bundling, regional
+                    bursts)
+                  </li>
+                </ul>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="transition-transform duration-300">
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
+                <h3 className="text-xl text-sprk-light-1 font-bold">
+                  Maximize marginal returns
+                </h3>
+                <p className="sec-desc text-sprk-light-grey italic pb-6">
+                  Some channels have reached saturation; incremental spend
+                  yields diminishing returns
+                </p>
+                <ul className="card-bullet-list">
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Reduce investment in saturated channels.
+                  </li>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Redirect savings to underfunded, high-growth channels.
+                  </li>
+                </ul>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="transition-transform duration-300">
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
+                <h3 className="text-xl text-sprk-light-1 font-bold">
+                  Time to refuel the engine
+                </h3>
+                <p className="sec-desc text-sprk-light-grey italic pb-6">
+                  Value is growing but volume is dropping – it’s time to
+                  fine-tune the mix
+                </p>
+                <ul className="card-bullet-list">
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Test alternate budget splits in “Compare Scenario”
+                  </li>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Shift budget toward high-RO channels (Social = 45%)
+                  </li>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Add volume-push campaigns (promos, bundling, regional
+                    bursts)
+                  </li>
+                </ul>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="transition-transform duration-300">
+              <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 h-[214px]">
+                <h3 className="text-xl text-sprk-light-1 font-bold">
+                  Time to refuel the engine
+                </h3>
+                <p className="sec-desc text-sprk-light-grey italic pb-6">
+                  Value is growing but volume is dropping – it’s time to
+                  fine-tune the mix
+                </p>
+                <ul className="card-bullet-list">
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Test alternate budget splits in “Compare Scenario”
+                  </li>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Shift budget toward high-RO channels (Social = 45%)
+                  </li>
+                  <li>
+                    <span>
+                      <Image
+                        src="/assets/icons/Clean.svg"
+                        alt="Icon"
+                        width={16}
+                        height={16}
+                      />
+                    </span>
+                    Add volume-push campaigns (promos, bundling, regional
+                    bursts)
+                  </li>
+                </ul>
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </section>
-
-        {/* Charts */}
-        {/* <section className="mt-8 grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-2xl shadow p-6">
-            <h3 className="text-lg font-semibold mb-2">Value Growth</h3>
-            <div className="h-48 bg-gradient-to-r from-purple-300 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold">
-              Chart Placeholder
-            </div>
-          </div>
-          <div className="bg-white rounded-2xl shadow p-6">
-            <h3 className="text-lg font-semibold mb-2">Volume Growth</h3>
-            <div className="h-48 bg-gradient-to-r from-green-300 to-green-500 rounded-lg flex items-center justify-center text-white font-bold">
-              Chart Placeholder
-            </div>
-          </div>
-        </section> */}
 
         {/* Campaign Section */}
         <section className="mt-14 get-inspired-section">
@@ -520,30 +1119,30 @@ const CmpDashboard = () => {
           </div>
           <div className="flex flex-wrap gap-4 pt-7">
             <Swiper
-              // navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev"}}modules={[Navigation]} className="mySwiper"
               slidesPerView={3}
               spaceBetween={30}
-              // navigation={{
-              //   nextEl: ".custom-next",
-              //   prevEl: ".custom-prev",
-              // }}
               modules={[Navigation]}
-              // onSwiper={(swiper) => {
-              //   swiperRef1.current = swiper;
-              // }}
               onSwiper={(swiper) =>
                 (swiperRefs.current["get-inspired-swiper"] = swiper)
               }
               onSlideChange={(swiper) =>
-                handleArrowState("get-inspired-swiper", swiper,".get-inspired-section .custom-prev", ".get-inspired-section .custom-next")
-            }
-            onAfterInit={(swiper) =>{
-              handleArrowState("get-inspired-swiper",swiper, ".get-inspired-section .custom-prev", ".get-inspired-section .custom-next")
-            }
-            }
+                handleArrowState(
+                  "get-inspired-swiper",
+                  swiper,
+                  ".get-inspired-section .custom-prev",
+                  ".get-inspired-section .custom-next"
+                )
+              }
+              onAfterInit={(swiper) => {
+                handleArrowState(
+                  "get-inspired-swiper",
+                  swiper,
+                  ".get-inspired-section .custom-prev",
+                  ".get-inspired-section .custom-next"
+                );
+              }}
             >
               <SwiperSlide>
-                {/* Card 1 with Swiper */}
                 <div className="flex-1 min-w-[250px] rounded-xl border border-[#F1F1F1] shadow overflow-hidden">
                   <Swiper
                     navigation={{
@@ -551,15 +1150,14 @@ const CmpDashboard = () => {
                       prevEl: ".custom-prev",
                     }}
                     modules={[Navigation]}
-                    
-              className="mySwiper"
-                  
-              onSlideChange={(swiper) =>
-                  handleArrowState(swiper, ".custom-prev", ".custom-next")
-                }
-                onAfterInit={(swiper) =>
-                  handleArrowState(swiper, ".custom-prev", ".custom-next")
-                }>
+                    className="mySwiper"
+                    onSlideChange={(swiper) =>
+                      handleArrowState(swiper, ".custom-prev", ".custom-next")
+                    }
+                    onAfterInit={(swiper) =>
+                      handleArrowState(swiper, ".custom-prev", ".custom-next")
+                    }
+                  >
                     <SwiperSlide>
                       <Image
                         src="/assets/images/get-inspired.png"
@@ -590,7 +1188,6 @@ const CmpDashboard = () => {
                           className="invert brightness-0"
                         />
                       </button>
-
                       <button className="custom-next grey-bg">
                         <Image
                           src="/assets/icons/right-arrow.svg"
@@ -722,8 +1319,13 @@ const CmpDashboard = () => {
 
         <section className="bg-red-orange-gradient text-white py-6 mt-8 mb-8 rounded-2xl flex justify-between px-6">
           <div>
-            <h2 className='text-base text-white font-bold'>Curious about your past performance?</h2>
-            <p className="text-sm text-white font-medium">Let our AI dig into your history to answer your questions and reveal useful insights.</p>
+            <h2 className="text-base text-white font-bold">
+              Curious about your past performance?
+            </h2>
+            <p className="text-sm text-white font-medium">
+              Let our AI dig into your history to answer your questions and
+              reveal useful insights.
+            </p>
           </div>
           <button className="btn-default flex gap-1">
             <Image
@@ -738,12 +1340,15 @@ const CmpDashboard = () => {
         </section>
 
         <section className="bg-[url('/assets/images/get-in-touch-bg.png')] py-[30px] bg-cover rounded-2xl">
-          <div className='flex gap-[39.5px] pr-6'>
-            <div className='w-[36%] pl-6 py-[23px]'>
-              <h3 className='text-2xl font-extrabold text-sprk-light-1 pb-6'>Start your end-to-end marketing analysis today with our tailored solutions.</h3>
-              <button className="btn-default ">Get in Touch</button>
+          <div className="flex gap-[39.5px] pr-6">
+            <div className="w-[36%] pl-6 py-[23px]">
+              <h3 className="text-2xl font-extrabold text-sprk-light-1 pb-6">
+                Start your end-to-end marketing analysis today with our tailored
+                solutions.
+              </h3>
+              <button className="btn-default">Get in Touch</button>
             </div>
-            <div className='w-[64%] pr-6'>
+            <div className="w-[64%] pr-6">
               <ul className="flex item-center gap-6">
                 <li className="flex-1 flex justify-between bg-[linear-gradient(126.16deg,rgba(82,82,82,0.24)-3.39%,rgba(0,30,41,0.4)58.7%)] rounded-xl border border-[#525252] shadow overflow-hidden py-[33px] px-6">
                   <div>
@@ -777,7 +1382,7 @@ const CmpDashboard = () => {
                     </h2>
                     <ul className="card-list">
                       <li className="pb-4 text-[11px]">
-                        Upload creatives & performance data{" "}
+                        Upload creatives & performance data
                       </li>
                       <li className="pb-4 text-[11px]">Analyse creatives</li>
                       <li className="text-[11px]">View report</li>
