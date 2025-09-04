@@ -18,6 +18,9 @@
 }
 
 @layer components {
+  .head-title{
+    @apply font-bold text-[28px];
+  }
   .sec-title {
     @apply font-bold text-[22px];
   }
@@ -33,7 +36,9 @@
   .bg-red-orange-gradient{
     background: linear-gradient(89.69deg, #EC3128 -14.76%, #F56233 49.73%, #FF9B3F 100%);
   }
-
+  .label{
+    @apply rounded-[12px] text-[12px] font-medium text-[#05051E] bg-[#F7F7F8] border-0 px-2 py-1 max-h-[24px];
+  }
   .card-title{
     @apply font-bold text-lg text-sprk-dark-2;
   }
