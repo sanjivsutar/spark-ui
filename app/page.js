@@ -26,6 +26,10 @@ export default function Home() {
       title: "Marketing Modal Components",
       url: "/marketing/marketing-modal-component",
     },
+     {
+      title: "Influencer Dashboard",
+      url: "/influencer/dashboard",
+    },
     
   ];
   return (
@@ -33,9 +37,9 @@ export default function Home() {
       <div className="p-[22px]">
         <h2 className="text-2xl">UI Page Templates </h2>
         <ul className="list-disc p-6">
-          {templateLinks.map((ele) => {
+          {templateLinks.map((ele, index) => {
             return (
-              <li>
+              <li key={index}>
                 <Link href={ele.url} className="hover:text-red-400">
                   {ele.title}
                 </Link>
