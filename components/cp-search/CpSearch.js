@@ -10,7 +10,7 @@ export default function Search() {
   return (
     <Paper
       component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 180 , border:1,borderColor:'#CECED6',borderRadius:'8px', boxShadow:'0px 1px 4px rgba(0, 0, 0, 0.1)'}}
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', height:36,width: 180 , border:1,borderColor:'#CECED6',borderRadius:'8px', boxShadow:'0px 1px 4px rgba(0, 0, 0, 0.1)'}}
     >
       <IconButton type="button" sx={{ p: '7px'}} aria-label="search">
         <SearchIcon />
