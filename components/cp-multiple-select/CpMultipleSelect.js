@@ -20,16 +20,12 @@ const MenuProps = {
 };
 
 const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+  'all',
+  'laptop',
+  'mobile',
+  'tablet',
+  'desktop',
+  'accessories',
 ];
 
 export default function MultipleSelectCheckmarks() {
@@ -47,7 +43,7 @@ export default function MultipleSelectCheckmarks() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1,minWidth: 130 }} size="small">
+      <FormControl sx={{ m: 1,minWidth: 130,maxWidth:160 }} size="small">
         <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
@@ -69,6 +65,17 @@ export default function MultipleSelectCheckmarks() {
               }}
             />
           }
+          sx={{
+            "& .MuiSelect-icon": {
+              color: "black",
+            },
+             height: "44px", 
+             borderRadius: "8px", 
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#CECED6",
+            borderWidth: "1px",
+          },
+          }}
           renderValue={(selected) => (selected).join(', ')}
           MenuProps={MenuProps}
           IconComponent={ExpandMoreRoundedIcon}
