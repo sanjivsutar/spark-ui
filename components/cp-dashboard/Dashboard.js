@@ -179,7 +179,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   borderRadius: "12px",
   overflow: "hidden",
   backgroundColor: "#fff",
-
+  width: "100%",
   // column header background
   "&.MuiDataGrid-columnHeaders": {
     background: "#003366",
@@ -364,6 +364,154 @@ const FunnelChart = ({ title, data }) => {
     </div>
   );
 };
+
+// Define chartData for BarLabelRotationChart
+const chartData = [
+  { name: "Forest", data: [320, 332, 301, 334, 390] },
+  { name: "Steppe", data: [220, 182, 191, 234, 290] },
+  { name: "Desert", data: [150, 232, 201, 154, 190] },
+  { name: "Wetland", data: [98, 77, 101, 99, 40] },
+];
+
+
+// Configuration for label positioning options
+const posList = [
+  'left',
+  'right',
+  'top',
+  'bottom',
+  'inside',
+  'insideTop',
+  'insideLeft',
+  'insideRight',
+  'insideBottom',
+  'insideTopLeft',
+  'insideTopRight',
+  'insideBottomLeft',
+  'insideBottomRight',
+];
+
+const app = {
+  configParameters: {
+    rotate: { min: -90, max: 90 },
+    align: { options: { left: 'left', center: 'center', right: 'right' } },
+    verticalAlign: { options: { top: 'top', middle: 'middle', bottom: 'bottom' } },
+    position: {
+      options: posList.reduce((map, pos) => {
+        map[pos] = pos;
+        return map;
+      }, {}),
+    },
+    distance: { min: 0, max: 100 },
+  },
+  config: {
+    rotate: 90,
+    align: 'left',
+    verticalAlign: 'middle',
+    position: 'insideBottom',
+    distance: 15,
+  },
+};
+
+const BarLabelRotationChart = ({ title, data, colors }) => {
+  // Fallback colors if none provided
+  const defaultColors = ['#1E3A8A', '#3B82F6', '#93C5FD', '#DBEAFE'];
+
+  // Ensure data is valid; provide fallback if undefined or empty
+  const safeData = Array.isArray(data) && data.length > 0 ? data : [
+    { name: 'Forest', data: [320, 332, 301, 334, 390] },
+    { name: 'Steppe', data: [220, 182, 191, 234, 290] },
+    { name: 'Desert', data: [150, 232, 201, 154, 190] },
+    { name: 'Wetland', data: [98, 77, 101, 99, 40] },
+  ];
+
+  const labelOption = {
+    show: true,
+    position: app.config.position,
+    distance: app.config.distance,
+    align: app.config.align,
+    verticalAlign: app.config.verticalAlign,
+    rotate: app.config.rotate,
+    borderRadius: 4,
+    formatter: '',
+    fontSize: 16,
+    rich: { name: {} },
+  };
+
+  const option = {
+    title: {
+      text: title,
+      left: "center",
+      textStyle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#333",
+      },
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
+    },
+    legend: {
+      data: safeData.map((item) => item.name || "Unknown"),
+      bottom: 0,
+    },
+    toolbox: {
+      show: false,
+      orient: "vertical",
+      left: "right",
+      top: "center",
+      feature: {
+        mark: { show: true },
+        dataView: { show: true, readOnly: false },
+        magicType: { show: true, type: ["line", "bar", "stack"] },
+        restore: { show: true },
+        saveAsImage: { show: true },
+      },
+    },
+    xAxis: [
+      {
+        type: "category",
+        axisTick: { show: false },
+        data: ["2012", "2013", "2014", "2015", "2016"],
+      },
+    ],
+    yAxis: [
+      {
+        type: "value",
+      },
+    ],
+    series: safeData.map((item, index) => ({
+      name: item.name || "Unknown",
+      type: "bar",
+      barGap: 0,
+      label: labelOption,
+      emphasis: {
+        focus: "series",
+      },
+      data: item.data || [0, 0, 0, 0, 0],
+      itemStyle: {
+        color:
+          colors && colors[index]
+            ? colors[index]
+            : defaultColors[index % defaultColors.length],
+        borderRadius: [5, 5, 0, 0],
+      },
+    })),
+  };
+
+  return (
+    <div className="w-1/2 p-5 border border-gray-200 rounded-lg bg-white">
+      <ReactECharts
+        option={option}
+        style={{ height: '356px', width: '100%' }}
+      />
+    </div>
+  );
+};
+
 
 const CmpDashboard = () => {
   const [value, setValue] = useState("one");
@@ -782,13 +930,13 @@ const CmpDashboard = () => {
               <>
                 <div className="p-5 bg-[#F2F7FD] rounded-xl flex justify-between items-center mb-5">
                   <div className="lhs-panel w-1/2">
-                    <h2 className="text-lg font-semibold text-[#0D0D11]">
+                    {/* <h2 className="text-lg font-semibold text-[#0D0D11]">
                       Competition Comparison
                     </h2>
                     <p className="text-sm text-[#60607B]">
                       Analyze how your brand stacks up against competitors based
                       on key performance indicators.
-                    </p>
+                    </p> */}
                   </div>
                   <div className="rhs-panel w-1/2 flex justify-end items-center gap-2">
                     <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
@@ -823,9 +971,69 @@ const CmpDashboard = () => {
                     />
                   </Box>
                 </div>
+                <div className="flex gap-5 mt-5">
+                  <BarNegativeChart title="KPI - Value" data={KPIValueData} />
+                  <BarNegativeChart title="Driver - ND" data={DriverNDData} />
+                </div>
               </>
             )}
-            {value === "three" && <div>Content for Item Three</div>}
+            {value === "three" && (
+              <>
+                <div className="p-5 bg-[#F2F7FD] rounded-xl flex justify-between items-center mb-5">
+                  <div className="lhs-panel w-1/2">
+                    {/* <h2 className="text-lg font-semibold text-[#0D0D11]">
+                      Competition Comparison
+                    </h2>
+                    <p className="text-sm text-[#60607B]">
+                      Analyze how your brand stacks up against competitors based
+                      on key performance indicators.
+                    </p> */}
+                  </div>
+                  <div className="rhs-panel w-1/2 flex justify-end items-center gap-2">
+                    <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
+                      <Image
+                        src="/assets/icons/question.svg"
+                        alt=""
+                        width={18}
+                        height={18}
+                      />
+                    </span>
+                    <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
+                      <Image
+                        src="/assets/icons/question.svg"
+                        alt=""
+                        width={18}
+                        height={18}
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-5 mt-5">
+                  <BarLabelRotationChart
+                    title="Lenovo"
+                    data={chartData}
+                    colors={["#1E3A8A", "#3B82F6", "#93C5FD", "#DBEAFE"]}
+                  />
+                  <BarLabelRotationChart
+                    title="HP"
+                    data={chartData}
+                    colors={["#2A1E5A", "#6B48FF", "#B794F4", "#E0D6FF"]}
+                  />
+                </div>
+                <div className="flex gap-5 mt-5">
+                  <BarLabelRotationChart
+                    title="Dell"
+                    data={chartData}
+                    colors={["#D32F2F", "#F44336", "#EF9A9A", "#FFCDD2"]}
+                  />
+                  <BarLabelRotationChart
+                    title="Asus"
+                    data={chartData}
+                    colors={["#7B1FA2", "#9C27B0", "#CE93D8", "#F3E5F5"]}
+                  />
+                </div>
+              </>
+            )}
             {value === "four" && <div>Content for Item Four</div>}
           </div>
         </section>
