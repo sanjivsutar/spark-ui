@@ -277,8 +277,8 @@ export default function CpTopPerformingCampaigns() {
         <p className="sec-desc">We’ve analyzed your previous performance data and curated a list of the best-performing campaign for your review.</p>
       </div>
       <Swiper
-        slidesPerView={2.8}
-        spaceBetween={24}
+        slidesPerView={3}
+        spaceBetween={15}
         modules={[Navigation]}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         navigation={{
@@ -290,7 +290,7 @@ export default function CpTopPerformingCampaigns() {
       >
         {campaigns.map((c, idx) => (
           <SwiperSlide key={idx}>
-            <div className="max-w-[434px] rounded-2xl shadow-lg p-6 border border-gray-200 bg-white h-full flex flex-col">
+            <div className=" rounded-2xl shadow-lg p-6 border border-gray-200 bg-white h-full flex flex-col">
               <div className="flex-row items-center mb-4">
                   <Chip
                     icon={c.status.icon}
