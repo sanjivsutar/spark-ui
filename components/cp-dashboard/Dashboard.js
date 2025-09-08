@@ -944,7 +944,6 @@ const CmpDashboard = () => {
             </span>
           </div>
         </div>
-
         {/* Key Performance Insights */}
         <section className="mt-5 mb-5">
           <Tabs
@@ -1070,7 +1069,57 @@ const CmpDashboard = () => {
                     </span>
                   </div>
                 </div>
-                <div className="flex gap-5">
+                <section>
+          <div className="flex flex-row align-center justify-between gap-4">
+      <div className="flex min-w-[610px] rounded-xl shadow-sm p-4 border border-gray-200 relative overflow-hidden">
+        <div className="flex flex-row items-center gap-6">
+        <div className="w-12 h-12 bg-[#FFFFFF] shadow-sm rounded-full flex justify-center items-center">
+          <Image src="/assets/icons/growth-curve.svg" alt="growth" width={20} height={20} />
+        </div>
+        <div className="flex flex-col min-w-[240px] gap-2">
+          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">HP </span><span className="label">Value</span></div>
+          <ul className="flex flex-col gap-2 text-[14px]">
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) : </span><span className="font-bold">128</span></li>
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">59</span></li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">Dell </span><span className="label">Volume</span></div>
+          <ul className="flex flex-col gap-2 text-[14px]">
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) :</span><span className="font-bold">110</span></li>
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">60</span></li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+      <div className="flex min-w-[610px] rounded-xl shadow-sm p-4 border border-gray-200 relative overflow-hidden">
+        <div className="flex flex-row items-center gap-6">
+        <div className="w-12 h-12 bg-[#FFFFFF] shadow-sm rounded-full flex justify-center items-center">
+          <Image src="/assets/icons/fall-curve.svg" alt="growth" width={20} height={20} />
+        </div>
+        <div className="flex flex-col min-w-[240px] gap-2">
+          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">LG </span><span className="label">Value</span></div>
+          <ul className="flex flex-col gap-2 text-[14px]">
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) : </span><span className="font-bold">-5</span></li>
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">4</span></li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">Acer </span><span className="label">Volume</span></div>
+          <ul className="flex flex-col gap-2 text-[14px]">
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) : </span><span className="font-bold">85</span></li>
+            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">-2</span></li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+      </div>
+        </section>
+                <div className="flex gap-5 mt-6">
                   <Box sx={{ height: 490, width: "100%" }}>
                     <StyledDataGrid
                       rows={rows}
