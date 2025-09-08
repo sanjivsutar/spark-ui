@@ -14,6 +14,119 @@ import { handleArrowState } from "../../utils/Swiper";
 import CpTimelineDropdown from "../dropdown/CpTimelineDropdown";
 import { styled } from "@mui/material/styles"; // Added missing import
 import { DataGrid } from "@mui/x-data-grid";
+
+const KPIValueData = [
+  { name: "HP", data: [128.45] },
+  { name: "Dell", data: [110.29] },
+  { name: "Acer", data: [85.09] },
+  { name: "Lenovo", data: [7.89] },
+  { name: "Asus", data: [4.13] },
+  { name: "Apple", data: [3.52] },
+  { name: "Microsoft", data: [-2.94] },
+];
+
+const DriverNDData = [
+  { name: "HP", data: [128.45] },
+  { name: "Dell", data: [110.29] },
+  { name: "Acer", data: [85.09] },
+  { name: "Lenovo", data: [7.89] },
+  { name: "Asus", data: [4.13] },
+  { name: "Apple", data: [3.52] },
+  { name: "Microsoft", data: [-2.94] },
+];
+
+const BarNegativeChart = ({ title, data, colors }) => {
+  // Fallback colors if none provided
+  const defaultColors = [
+    "#2ecc71",
+    "#27ae60",
+    "#3498db",
+    "#2980b9",
+    "#1abc9c",
+    "#16a085",
+    "#e74c3c",
+  ];
+
+  // Ensure data is valid; provide fallback if undefined or empty
+  const safeData =
+    Array.isArray(data) && data.length > 0
+      ? data
+      : [{ name: "Category A", data: [0] }];
+
+  const option = {
+    title: {
+      text: title,
+      left: "center",
+      textStyle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#333",
+      },
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
+    },
+    legend: {
+      data: safeData.map((item) => item.name || "Unknown"),
+      bottom: 0,
+    },
+    xAxis: [
+      {
+        type: "value",
+        min: -25,
+        max: 150,
+        axisTick: { show: false },
+        axisLabel: {
+          formatter: "{value}%",
+        },
+      },
+    ],
+    yAxis: [
+      {
+        type: "category",
+        data: safeData.map((item) => item.name),
+        axisTick: { show: false },
+      },
+    ],
+    series: [
+      {
+        name: "KPI - Value",
+        type: "bar",
+        data: safeData.map((item) => ({
+          value: item.data[0],
+          itemStyle: {
+            color:
+              colors && colors[safeData.indexOf(item)]
+                ? colors[safeData.indexOf(item)]
+                : defaultColors[safeData.indexOf(item) % defaultColors.length],
+          },
+        })),
+        label: {
+          show: true,
+          position: "right",
+          formatter: "{c}%",
+          fontSize: 12,
+        },
+        itemStyle: {
+          borderRadius: [0],
+        },
+      },
+    ],
+  };
+
+  return (
+    <div className="w-1/2 p-5 border border-gray-200 rounded-lg bg-white">
+      <ReactECharts
+        option={option}
+        style={{ height: "356px", width: "100%" }}
+      />
+    </div>
+  );
+};
+
 // Define columns for StyledDataGrid
 const columns = [
   { field: "brands", headerName: "Brands", width: 150 },
@@ -1021,8 +1134,16 @@ const CmpDashboard = () => {
                   </Box>
                 </div>
                 <div className="flex gap-5 mt-5">
-                  <BarNegativeChart title="KPI - Value" data={KPIValueData} />
-                  <BarNegativeChart title="Driver - ND" data={DriverNDData} />
+                  {KPIValueData ? (
+                    <BarNegativeChart title="KPI - Value" data={KPIValueData} />
+                  ) : (
+                    <div>Data not available for KPI - Value</div>
+                  )}
+                  {DriverNDData ? (
+                    <BarNegativeChart title="Driver - ND" data={DriverNDData} />
+                  ) : (
+                    <div>Data not available for Driver - ND</div>
+                  )}
                 </div>
               </>
             )}

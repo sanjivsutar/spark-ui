@@ -30,6 +30,10 @@ export default function Home() {
       title: "Influencer Dashboard",
       url: "/influencer/dashboard",
     },
+     {
+      title: "Influencer Detail",
+      url: "/influencer/influencer-detail",
+    },
     
   ];
   return (
