@@ -14,6 +14,7 @@ import { handleArrowState } from "../../utils/Swiper";
 import CpTimelineDropdown from "../dropdown/CpTimelineDropdown";
 import { styled } from "@mui/material/styles"; // Added missing import
 import { DataGrid } from "@mui/x-data-grid";
+import SingleSelectDropdown from "../dropdown/SingleSelectDropdown";
 
 const KPIValueData = [
   { name: "HP", data: [128.45] },
@@ -294,40 +295,42 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   backgroundColor: "#fff",
   width: "100%",
   // column header background
-  "&.MuiDataGrid-columnHeaders": {
-    background: "#003366",
+  "& .MuiDataGrid-columnHeaders": {
+   background: 'linear-gradient( 180deg, #022B59 31.25%, #044085 100%)',
+    // Blue background for column headers
     color: "#fff",
     fontWeight: 600,
     borderBottom: "1px solid #004080",
   },
 
-  // group headers
-  "&.MuiDataGrid-columnHeaderGroup": {
-    background: "#003366",
+  // group headers (data, kpi, Drivers)
+  "& .MuiDataGrid-columnHeader--group": {
     color: "#fff",
     fontWeight: 700,
     textAlign: "center",
     borderRight: "1px solid #004080",
   },
 
-  // column header borders
-  "&.MuiDataGrid-columnHeader": {
+  // individual column headers (Brands, value, volume, etc.)
+  "& .MuiDataGrid-columnHeader": {
+    background: "#fff", // Blue background for individual column headers
+    color: "#000",
     borderRight: "1px solid #ddd",
   },
 
   // cell borders
-  "&.MuiDataGrid-cell": {
+  "& .MuiDataGrid-cell": {
     borderRight: "1px solid #ddd",
     borderBottom: "1px solid #ddd",
   },
 
   // alternating row background
-  "&.MuiDataGrid-row:nth-of-type(odd)": {
+  "& .MuiDataGrid-row:nth-of-type(odd)": {
     backgroundColor: "#f9f9f9",
   },
 
   // row hover effect
-  "&.MuiDataGrid-row:hover": {
+  "& .MuiDataGrid-row:hover": {
     backgroundColor: "#f1f8ff",
   },
 
@@ -347,6 +350,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     fill: "#fff",
   },
 }));
+
 const FunnelChart = ({ title, data }) => {
   const option = {
     title: {
@@ -1041,7 +1045,7 @@ const CmpDashboard = () => {
             {value === "two" && (
               <>
                 <div className="p-5 bg-[#F2F7FD] rounded-xl flex justify-between items-center mb-5">
-                  <div className="lhs-panel w-1/2">
+                  <div className="lhs-panel w-1/2  flex justify-start items-center gap-2">
                     {/* <h2 className="text-lg font-semibold text-[#0D0D11]">
                       Competition Comparison
                     </h2>
@@ -1049,6 +1053,12 @@ const CmpDashboard = () => {
                       Analyze how your brand stacks up against competitors based
                       on key performance indicators.
                     </p> */}
+
+                    <SingleSelectDropdown
+                      label="Visualisation"
+                      options={["Chart", "Graph"]}
+                      onSelect={(option) => console.log(option)}
+                    />
                   </div>
                   <div className="rhs-panel w-1/2 flex justify-end items-center gap-2">
                     <span className="flex justify-center align-center p-1 bg-[#022B59] rounded-lg w-6 h-6">
@@ -1069,56 +1079,118 @@ const CmpDashboard = () => {
                     </span>
                   </div>
                 </div>
-                <section>
-          <div className="flex flex-row align-center justify-between gap-4">
-      <div className="flex min-w-[610px] rounded-xl shadow-sm p-4 border border-gray-200 relative overflow-hidden">
-        <div className="flex flex-row items-center gap-6">
-        <div className="w-12 h-12 bg-[#FFFFFF] shadow-sm rounded-full flex justify-center items-center">
-          <Image src="/assets/icons/growth-curve.svg" alt="growth" width={20} height={20} />
-        </div>
-        <div className="flex flex-col min-w-[240px] gap-2">
-          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">HP </span><span className="label">Value</span></div>
-          <ul className="flex flex-col gap-2 text-[14px]">
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) : </span><span className="font-bold">128</span></li>
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">59</span></li>
-          </ul>
-        </div>
-        <div></div>
-      </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">Dell </span><span className="label">Volume</span></div>
-          <ul className="flex flex-col gap-2 text-[14px]">
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) :</span><span className="font-bold">110</span></li>
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">60</span></li>
-          </ul>
-        </div>
-        <div></div>
-      </div>
-      <div className="flex min-w-[610px] rounded-xl shadow-sm p-4 border border-gray-200 relative overflow-hidden">
-        <div className="flex flex-row items-center gap-6">
-        <div className="w-12 h-12 bg-[#FFFFFF] shadow-sm rounded-full flex justify-center items-center">
-          <Image src="/assets/icons/fall-curve.svg" alt="growth" width={20} height={20} />
-        </div>
-        <div className="flex flex-col min-w-[240px] gap-2">
-          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">LG </span><span className="label">Value</span></div>
-          <ul className="flex flex-col gap-2 text-[14px]">
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) : </span><span className="font-bold">-5</span></li>
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">4</span></li>
-          </ul>
-        </div>
-        <div></div>
-      </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-row items-center justify-start gap-3"><span className="text-[20px] font-bold">Acer </span><span className="label">Volume</span></div>
-          <ul className="flex flex-col gap-2 text-[14px]">
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Value (in Bn IDR) : </span><span className="font-bold">85</span></li>
-            <li className="flex flex-row items-center justify-start gap-1"><span className="text-[#60607B] font-[500]">Volume (Mn units): </span><span className="font-bold">-2</span></li>
-          </ul>
-        </div>
-        <div></div>
-      </div>
-      </div>
-        </section>
+                
+                <div className="flex flex-row align-center justify-between gap-4">
+                  <div className="flex w-1/2 rounded-xl shadow-sm p-4 border border-gray-200 relative overflow-hidden">
+                    <div className="flex flex-row items-center gap-6">
+                      <div className="w-12 h-12 bg-[#FFFFFF] shadow-sm rounded-full flex justify-center items-center">
+                        <Image
+                          src="/assets/icons/growth-curve.svg"
+                          alt="growth"
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <div className="flex flex-col min-w-[240px] gap-2">
+                        <div className="flex flex-row items-center justify-start gap-3">
+                          <span className="text-[20px] font-bold">HP </span>
+                          <span className="label">Value</span>
+                        </div>
+                        <ul className="flex flex-col gap-2 text-[14px]">
+                          <li className="flex flex-row items-center justify-start gap-1">
+                            <span className="text-[#60607B] font-[500]">
+                              Value (in Bn IDR) :{" "}
+                            </span>
+                            <span className="font-bold">128</span>
+                          </li>
+                          <li className="flex flex-row items-center justify-start gap-1">
+                            <span className="text-[#60607B] font-[500]">
+                              Volume (Mn units):{" "}
+                            </span>
+                            <span className="font-bold">59</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div></div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex flex-row items-center justify-start gap-3">
+                        <span className="text-[20px] font-bold">Dell </span>
+                        <span className="label">Volume</span>
+                      </div>
+                      <ul className="flex flex-col gap-2 text-[14px]">
+                        <li className="flex flex-row items-center justify-start gap-1">
+                          <span className="text-[#60607B] font-[500]">
+                            Value (in Bn IDR) :
+                          </span>
+                          <span className="font-bold">110</span>
+                        </li>
+                        <li className="flex flex-row items-center justify-start gap-1">
+                          <span className="text-[#60607B] font-[500]">
+                            Volume (Mn units):{" "}
+                          </span>
+                          <span className="font-bold">60</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div className="flex w-1/2 rounded-xl shadow-sm p-4 border border-gray-200 relative overflow-hidden">
+                    <div className="flex flex-row items-center gap-6">
+                      <div className="w-12 h-12 bg-[#FFFFFF] shadow-sm rounded-full flex justify-center items-center">
+                        <Image
+                          src="/assets/icons/fall-curve.svg"
+                          alt="growth"
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                      <div className="flex flex-col min-w-[240px] gap-2">
+                        <div className="flex flex-row items-center justify-start gap-3">
+                          <span className="text-[20px] font-bold">LG </span>
+                          <span className="label">Value</span>
+                        </div>
+                        <ul className="flex flex-col gap-2 text-[14px]">
+                          <li className="flex flex-row items-center justify-start gap-1">
+                            <span className="text-[#60607B] font-[500]">
+                              Value (in Bn IDR) :{" "}
+                            </span>
+                            <span className="font-bold">-5</span>
+                          </li>
+                          <li className="flex flex-row items-center justify-start gap-1">
+                            <span className="text-[#60607B] font-[500]">
+                              Volume (Mn units):{" "}
+                            </span>
+                            <span className="font-bold">4</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div></div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex flex-row items-center justify-start gap-3">
+                        <span className="text-[20px] font-bold">Acer </span>
+                        <span className="label">Volume</span>
+                      </div>
+                      <ul className="flex flex-col gap-2 text-[14px]">
+                        <li className="flex flex-row items-center justify-start gap-1">
+                          <span className="text-[#60607B] font-[500]">
+                            Value (in Bn IDR) :{" "}
+                          </span>
+                          <span className="font-bold">85</span>
+                        </li>
+                        <li className="flex flex-row items-center justify-start gap-1">
+                          <span className="text-[#60607B] font-[500]">
+                            Volume (Mn units):{" "}
+                          </span>
+                          <span className="font-bold">-2</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+               
                 <div className="flex gap-5 mt-6">
                   <Box sx={{ height: 490, width: "100%" }}>
                     <StyledDataGrid
