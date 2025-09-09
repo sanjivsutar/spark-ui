@@ -1022,7 +1022,7 @@ const InfluencerDashboard = () => {
                     <EngagementByPlatform />
                   </Box>
                 </div>
-                <div className="w-1/2 rounded-xl shadow-lg border border-gray-200 p-5">
+                <div className="w-1/2 rounded-xl">
                   <Box sx={{ mb: 2, position: "relative", height: 440, width: "100%" }}>
                     <StyledDataGrid
                       rows={rows}
