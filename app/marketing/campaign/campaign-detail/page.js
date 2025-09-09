@@ -1,7 +1,9 @@
 'use client';
 
 import BarRaceChart from "@/components/cp-bar-graph/CpBarGraph";
+import CpMetricCard from "@/components/cp-card/CpMetricCard";
 import MainPanel from "@/components/cp-main-panel/cp-main-panel";
+import BarChartStyled from "@/components/cp-performance-bar-graph/PerformanceBarGraph";
 import TopPerformingContent from "@/components/cp-top-performing-content/TopPerformingContent";
 import { Box, ClickAwayListener, Tab, Tabs } from "@mui/material";
 import Image from "next/image";
@@ -167,18 +169,11 @@ export default function CampaignDetail() {
                             {tabValue === "Performance" && (
                                 <>
                                     <div className="mb-14">
-                                        <div className='mb-5'>
+                                        {/* <div className='mb-5'>
                                             <h3 className="sec-title">Influencers Performance</h3>
                                             <p className='sec-desc text-[#60607B]'>Using your past performance data, we’ve generated insights to identify specific areas for improvement, segmented according to the data you provided.</p>
-                                        </div>
-                                        <BarRaceChart
-                                            labels={['Instagram', 'Youtube', 'Tiktok', 'Twitter', 'LinkedIn']}
-                                            title='Performance'
-                                            maxBars={3}
-                                            intervalMs={3000}
-                                            seriesName="X"
-                                            height={320}
-                                        />
+                                        </div> */}
+                                        <BarChartStyled/>
                                     </div>
                                     <TopPerformingContent />
                                 </>
