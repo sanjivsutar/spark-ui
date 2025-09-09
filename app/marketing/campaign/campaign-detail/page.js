@@ -1,13 +1,14 @@
 'use client';
 
+import BarRaceChart from "@/components/cp-bar-graph/CpBarGraph";
 import MainPanel from "@/components/cp-main-panel/cp-main-panel";
 import { Box, ClickAwayListener } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function CampaignDetail() {
-    
-      const [open, setOpen] = useState(false);
+
+    const [open, setOpen] = useState(false);
 
     const handleClick = () => {
         setOpen((prev) => !prev);
@@ -17,8 +18,8 @@ export default function CampaignDetail() {
         setOpen(false);
     };
 
-    
-    return(
+
+    return (
         <>
             <MainPanel>
                 <div>
@@ -54,7 +55,7 @@ export default function CampaignDetail() {
                                         </Box>
                                     ) : null}
                                 </Box>
-                            </ClickAwayListener>          
+                            </ClickAwayListener>
                         </div>
                         <p className='text-xs text-sprk-dark-2 font-medium'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae.</p>
                         <ul className='flex justify-between mt-6'>
@@ -96,6 +97,66 @@ export default function CampaignDetail() {
                         <button className="absolute top-3 right-4  text-gray-400 hover:text-gray-600">
                             <Image src="/assets/images/close.png" alt="Icon" width={14} height={14} />
                         </button>
+                    </div>
+                    <div className="mt-6">
+                        <div className='mb-5'>
+                            <h3 className="sec-title">Influencers Performance</h3>
+                            <p className='sec-desc text-[#60607B]'>Using your past performance data, we’ve generated insights to identify specific areas for improvement, segmented according to the data you provided.</p>
+                        </div>
+                        <BarRaceChart
+                            labels={['Instagram', 'Youtube', 'Tiktok', 'Twitter', 'LinkedIn']}
+                            title = 'Performance'
+                            maxBars={3}
+                            intervalMs={3000}
+                            seriesName="X"
+                            height={320}
+                        />
+                    </div>
+                    <div>
+                        <h1 className="sec-title">Top Performing Content</h1>
+                        <div>
+                            <div className='flex item-center gap-5 mt-8 rounded-xl  w-full mb-6 shadow-lg border border-gray-200 relative'>
+                                <div></div>
+                                <div className="flex flex-col items-center py-6 px-4">
+                                    <div className="flex items-center flex-row gap-3 mb-4">
+                                        <div>Icon</div>
+                                    <h2 className="card-title">@prajakta_kohli</h2>
+                                    </div>
+                                    <div className="flex flex-row items-center gap-2 mb-5"><span className="label">Technology</span><span className="label">Instagram</span><span className="label">Story</span></div>
+                                    <div className="flex flex-row gap-6 mb-3">
+                                        <div className="flex flex-row items-center gap-1"><span >I</span><span className="text-[12px] text-[#373748]">12th August, 2025</span></div>
+                                        <div className="flex flex-row items-center gap-1"><span >I</span><span className="text-[12px] text-[#373748]">United Kingdom</span></div>
+                                        <div className="flex flex-row items-center gap-1"><span >I</span><span className="text-[12px] text-[#373748]">English</span></div>
+                                    </div>
+                                    <div className="flex flex-row items-center mb-6">
+                                        <div><span className="eyebrow-title">CTR</span><span className="text-[14px] text-[#040406] font-bold">3.5 %</span></div>
+                                        <div><span className="eyebrow-title">Engagement %</span><span className="text-[14px] text-[#040406] font-bold">5 %</span></div>
+                                    </div>
+                                    <div>
+                                        <ul className="flex flex-row g-6">
+                                            <li>
+                                            <div className="eyebrow-title">Like</div>
+                                            <div className="text-[14px] text-[#0D0D11] font-bold">100k</div>
+                                            </li>
+                                            <li>
+                                            <div className="eyebrow-title">Share</div>
+                                            <div className="text-[14px] text-[#0D0D11] font-bold">100</div>
+                                            </li>
+                                            <li>
+                                            <div className="eyebrow-title">Comments</div>
+                                            <div className="text-[14px] text-[#0D0D11] font-bold">200</div>
+                                            </li>
+                                            <li>
+                                            <div className="eyebrow-title">Views</div>
+                                            <div className="text-[14px] text-[#0D0D11] font-bold">100</div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div></div>
+                            <div></div>
+                        </div>
                     </div>
                 </div>
             </MainPanel>

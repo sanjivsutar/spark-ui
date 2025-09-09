@@ -11,18 +11,18 @@ import CpInfluencerDetailSwiper from '@/components/cp-influencer-detail/CpInflue
 
 const InfluencerDashboard = () => {
 
-     // for progress value
+    // for progress value
     const radius = 29;
     const circumference = 2 * Math.PI * radius;
     const value = 92;
 
     // for tabs
     const [tabValue, setTabValue] = useState("two");
-    
-      const handleChange = (event, newValue) => {
+
+    const handleChange = (event, newValue) => {
         setTabValue(newValue);
-      };
-    
+    };
+
 
     return (
         <MainPanel>
@@ -237,176 +237,176 @@ const InfluencerDashboard = () => {
                     </div>
                 </div>
                 <div className="mt-6">
-                <div className='mb-5'>
-                <h3 className="sec-title">Influencers Performance</h3>
-                <p className='sec-desc text-[#60607B]'>Using your past performance data, we’ve generated insights to identify specific areas for improvement, segmented according to the data you provided.</p>
+                    <div className='mb-5'>
+                        <h3 className="sec-title">Influencers Performance</h3>
+                        <p className='sec-desc text-[#60607B]'>Using your past performance data, we’ve generated insights to identify specific areas for improvement, segmented according to the data you provided.</p>
+                    </div>
+                    <BarRaceChart
+                        labels={['Instagram', 'Youtube', 'Tiktok', 'Twitter', 'LinkedIn']}
+                        maxBars={3}
+                        intervalMs={3000}
+                        seriesName="X"
+                        height={320}
+                    />
                 </div>
-                <BarRaceChart
-                labels={['Instagram', 'Youtube', 'Tiktok', 'Twitter', 'LinkedIn']}
-                maxBars={3}
-                intervalMs={3000}
-                seriesName="X"
-                height={320}
-                />
-            </div>
             </section>
 
             {/* Followers section */}
             <div className='pt-8'>
                 <h2 className='sec-title text-sprk-dark-2 pb-3'>Followers</h2>
-                  <div className="flex gap-4">
-                        <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
-                            <div className="relative z-10 flex justify-between pb-4">
-                                <div>
-                                    <p>
-                                        <span className="font-bold text-[38px] text-sprk-dark">1.5</span>
-                                        <span className="font-medium text-[22px] text-sprk-dark"> M</span>
-                                    </p>
-                                    <h3 className="text-xs text-sprk-grey font-medium">Youtube</h3>
-                                </div>
-                                <div className="rounded-full flex justify-center items-center">
-                                    <Image
-                                        src="/assets/images/card-youtube.png"
-                                        alt="Icon"
-                                        width={40}
-                                        height={40}
-                                        className=""
-                                    />
-                                </div>
+                <div className="flex gap-4">
+                    <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
+                        <div className="relative z-10 flex justify-between pb-4">
+                            <div>
+                                <p>
+                                    <span className="font-bold text-[38px] text-sprk-dark">1.5</span>
+                                    <span className="font-medium text-[22px] text-sprk-dark"> M</span>
+                                </p>
+                                <h3 className="text-xs text-sprk-grey font-medium">Youtube</h3>
                             </div>
-                            <span className="metric-card-label green">
+                            <div className="rounded-full flex justify-center items-center">
                                 <Image
-                                    src="/assets/icons/plus.svg"
-                                    className="plus"
+                                    src="/assets/images/card-youtube.png"
                                     alt="Icon"
-                                    width={12}
-                                    height={12}
+                                    width={40}
+                                    height={40}
+                                    className=""
                                 />
-                                20%
-                                <Image
-                                    src="/assets/icons/Arrow-top-right.svg"
-                                    className="plus"
-                                    alt="Icon"
-                                    width={16}
-                                    height={16}
-                                />
-                            </span>
-                        </div>
-
-                         <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
-                            <div className="relative z-10 flex justify-between pb-4">
-                                <div>
-                                    <p>
-                                        <span className="font-bold text-[38px] text-sprk-dark">252</span>
-                                        <span className="font-medium text-[22px] text-sprk-dark"> K</span>
-                                    </p>
-                                    <h3 className="text-xs text-sprk-grey font-medium">Instagram</h3>
-                                </div>
-                                <div className="rounded-full flex justify-center items-center">
-                                    <Image
-                                        src="/assets/images/card-instagram.png"
-                                        alt="Icon"
-                                        width={40}
-                                        height={40}
-                                        className=""
-                                    />
-                                </div>
                             </div>
-                            <span className="metric-card-label red">
-                                <Image
-                                    src="/assets/icons/minus.svg"
-                                    className="minus"
-                                    alt="Icon"
-                                    width={12}
-                                    height={12}
-                                />
-                                5%
-                                <Image
-                                    src="/assets/icons/arrow-left.svg"
-                                    className="arrow-red"
-                                    alt="Icon"
-                                    width={16}
-                                    height={16}
-                                />
-                            </span>
                         </div>
-
-                        <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
-                            <div className="relative z-10 flex justify-between pb-4">
-                                <div>
-                                    <p>
-                                        <span className="font-bold text-[38px] text-sprk-dark">800</span>
-                                        <span className="font-medium text-[22px] text-sprk-dark"> K</span>
-                                    </p>
-                                    <h3 className="text-xs text-sprk-grey font-medium">TikTok</h3>
-                                </div>
-                                <div className="rounded-full flex justify-center items-center">
-                                    <Image
-                                        src="/assets/images/card-tiktok.png"
-                                        alt="Icon"
-                                        width={40}
-                                        height={40}
-                                        className=""
-                                    />
-                                </div>
-                            </div>
-                            <span className="metric-card-label green">
-                                <Image
-                                    src="/assets/icons/plus.svg"
-                                    className="plus"
-                                    alt="Icon"
-                                    width={12}
-                                    height={12}
-                                />
-                                20%
-                                <Image
-                                    src="/assets/icons/Arrow-top-right.svg"
-                                    className="arrow-red"
-                                    alt="Icon"
-                                    width={16}
-                                    height={16}
-                                />
-                            </span>
-                        </div>
-                       
-                         <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
-                            <div className="relative z-10 flex justify-between pb-4">
-                                <div>
-                                    <p>
-                                        <span className="font-bold text-[38px] text-sprk-dark">100</span>
-                                        <span className="font-medium text-[22px] text-sprk-dark"> K</span>
-                                    </p>
-                                    <h3 className="text-xs text-sprk-grey font-medium">Facebook</h3>
-                                </div>
-                                <div className="rounded-full flex justify-center items-center">
-                                    <Image
-                                        src="/assets/images/card-facebook.png"
-                                        alt="Icon"
-                                        width={40}
-                                        height={40}
-                                        className=""
-                                    />
-                                </div>
-                            </div>
-                            <span className="metric-card-label red">
-                                <Image
-                                    src="/assets/icons/minus.svg"
-                                    className="minus"
-                                    alt="Icon"
-                                    width={12}
-                                    height={12}
-                                />
-                                2%
-                                <Image
-                                    src="/assets/icons/arrow-left.svg"
-                                    className="arrow-red"
-                                    alt="Icon"
-                                    width={16}
-                                    height={16}
-                                />
-                            </span>
-                        </div>
+                        <span className="metric-card-label green">
+                            <Image
+                                src="/assets/icons/plus.svg"
+                                className="plus"
+                                alt="Icon"
+                                width={12}
+                                height={12}
+                            />
+                            20%
+                            <Image
+                                src="/assets/icons/Arrow-top-right.svg"
+                                className="plus"
+                                alt="Icon"
+                                width={16}
+                                height={16}
+                            />
+                        </span>
                     </div>
+
+                    <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
+                        <div className="relative z-10 flex justify-between pb-4">
+                            <div>
+                                <p>
+                                    <span className="font-bold text-[38px] text-sprk-dark">252</span>
+                                    <span className="font-medium text-[22px] text-sprk-dark"> K</span>
+                                </p>
+                                <h3 className="text-xs text-sprk-grey font-medium">Instagram</h3>
+                            </div>
+                            <div className="rounded-full flex justify-center items-center">
+                                <Image
+                                    src="/assets/images/card-instagram.png"
+                                    alt="Icon"
+                                    width={40}
+                                    height={40}
+                                    className=""
+                                />
+                            </div>
+                        </div>
+                        <span className="metric-card-label red">
+                            <Image
+                                src="/assets/icons/minus.svg"
+                                className="minus"
+                                alt="Icon"
+                                width={12}
+                                height={12}
+                            />
+                            5%
+                            <Image
+                                src="/assets/icons/arrow-left.svg"
+                                className="arrow-red"
+                                alt="Icon"
+                                width={16}
+                                height={16}
+                            />
+                        </span>
+                    </div>
+
+                    <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
+                        <div className="relative z-10 flex justify-between pb-4">
+                            <div>
+                                <p>
+                                    <span className="font-bold text-[38px] text-sprk-dark">800</span>
+                                    <span className="font-medium text-[22px] text-sprk-dark"> K</span>
+                                </p>
+                                <h3 className="text-xs text-sprk-grey font-medium">TikTok</h3>
+                            </div>
+                            <div className="rounded-full flex justify-center items-center">
+                                <Image
+                                    src="/assets/images/card-tiktok.png"
+                                    alt="Icon"
+                                    width={40}
+                                    height={40}
+                                    className=""
+                                />
+                            </div>
+                        </div>
+                        <span className="metric-card-label green">
+                            <Image
+                                src="/assets/icons/plus.svg"
+                                className="plus"
+                                alt="Icon"
+                                width={12}
+                                height={12}
+                            />
+                            20%
+                            <Image
+                                src="/assets/icons/Arrow-top-right.svg"
+                                className="arrow-red"
+                                alt="Icon"
+                                width={16}
+                                height={16}
+                            />
+                        </span>
+                    </div>
+
+                    <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden">
+                        <div className="relative z-10 flex justify-between pb-4">
+                            <div>
+                                <p>
+                                    <span className="font-bold text-[38px] text-sprk-dark">100</span>
+                                    <span className="font-medium text-[22px] text-sprk-dark"> K</span>
+                                </p>
+                                <h3 className="text-xs text-sprk-grey font-medium">Facebook</h3>
+                            </div>
+                            <div className="rounded-full flex justify-center items-center">
+                                <Image
+                                    src="/assets/images/card-facebook.png"
+                                    alt="Icon"
+                                    width={40}
+                                    height={40}
+                                    className=""
+                                />
+                            </div>
+                        </div>
+                        <span className="metric-card-label red">
+                            <Image
+                                src="/assets/icons/minus.svg"
+                                className="minus"
+                                alt="Icon"
+                                width={12}
+                                height={12}
+                            />
+                            2%
+                            <Image
+                                src="/assets/icons/arrow-left.svg"
+                                className="arrow-red"
+                                alt="Icon"
+                                width={16}
+                                height={16}
+                            />
+                        </span>
+                    </div>
+                </div>
             </div>
 
             {/* Optimal match section */}
@@ -446,7 +446,7 @@ const InfluencerDashboard = () => {
                             {value}%
                         </span>
                     </div>
-            
+
                     <div className='flex justify-between'>
                         <div className='w-[578px]'>
                             <h2 className="font-bold text-lg text-sprk-light">Optimal match</h2>
@@ -454,10 +454,10 @@ const InfluencerDashboard = () => {
                                 Considering the influencers you’ve created for your campaigns, this is a perfect fit.
                             </p>
                         </div>
-            
+
                         {/* Vertical Gradient Divider */}
                         <div className="h-16 w-[2px] bg-gradient-to-b from-[#EC3228] via-[#F66B34] to-[#FF9B3F] rounded-full mx-8"></div>
-            
+
                         {/* Right Side Content */}
                         <div className="flex flex-col gap-2">
                             <h2 className="text-sprk-light font-semibold text-sm pb-2">Topics they talk about?</h2>
@@ -492,18 +492,18 @@ const InfluencerDashboard = () => {
                     textColor='primary'
                     aria-label="custom tabs with gradient indicator"
                     slotProps={{
-                    indicator: {
-                        sx: {
-                            background:
-                                "linear-gradient(90deg, #EC3128, #F56233, #FF9B3F)",
-                            height: 4,
-                            borderRadius: 2,
+                        indicator: {
+                            sx: {
+                                background:
+                                    "linear-gradient(90deg, #EC3128, #F56233, #FF9B3F)",
+                                height: 4,
+                                borderRadius: 2,
+                            },
                         },
-                    },
                     }}
                     sx={{
-                    borderBottom: 1,
-                    borderColor: "divider",
+                        borderBottom: 1,
+                        borderColor: "divider",
                     }}
                 >
                     <Tab
@@ -518,26 +518,26 @@ const InfluencerDashboard = () => {
                         }}
                     />
                     <Tab
-                    value="two"
-                    label="Content"
-                    sx={{
-                        fontWeight: 500,
-                        color: "#60607B",
-                        textTransform: "none",
-                        padding: "24px",
-                         "&.Mui-selected": { color: "#0D0D11", fontWeight: 700 },
-                    }}
+                        value="two"
+                        label="Content"
+                        sx={{
+                            fontWeight: 500,
+                            color: "#60607B",
+                            textTransform: "none",
+                            padding: "24px",
+                            "&.Mui-selected": { color: "#0D0D11", fontWeight: 700 },
+                        }}
                     />
                     <Tab
-                    value="three"
-                    label="Campaigns"
-                    sx={{
-                        fontWeight: 500,
-                        color: "#60607B",
-                        textTransform: "none",
-                        padding: "24px",
-                        "&.Mui-selected": { color: "#0D0D11", fontWeight: 700 },
-                    }}
+                        value="three"
+                        label="Campaigns"
+                        sx={{
+                            fontWeight: 500,
+                            color: "#60607B",
+                            textTransform: "none",
+                            padding: "24px",
+                            "&.Mui-selected": { color: "#0D0D11", fontWeight: 700 },
+                        }}
                     />
                 </Tabs>
 
@@ -549,7 +549,7 @@ const InfluencerDashboard = () => {
                             alt='Instagram image'
                             width={24}
                             height={24}
-                            style={{objectFit: 'contain'}}
+                            style={{ objectFit: 'contain' }}
                         />
                         <h3 className='sec-title text-sprk-dark-2'>Instagram</h3>
                     </div>

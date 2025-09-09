@@ -28,7 +28,9 @@
   .sec-desc{
     @apply font-medium text-sm;
   }
-
+  .eyebrow-title{
+    @apply text-[12px] text-[#60607B]
+  }
   .sec-sub-title{
     @apply font-bold text-white text-2xl;
   }
