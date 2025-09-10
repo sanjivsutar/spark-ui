@@ -7,16 +7,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
-  const [showToast, setShowToast] = useState(false)
-
-  const handleShowToast = () => {
-    setShowToast(true);
-  };
-
-  const handleCloseToast = () => {
-    setShowToast(false);
-  };
-  const [isOpen, setIsOpen] = useState(false);
   const templateLinks = [
     {
       title: "Marketing Dashboard",
@@ -66,50 +56,6 @@ export default function Home() {
               </li>
             );
           })}
-          <button
-            onClick={handleShowToast}
-            className="bg-blue-500 text-white px-4 py-2 rounded mt-6"
-          >
-            Show Toast
-          </button>
-          <ToastMessage
-            icon={
-              <Image 
-              src="/assets/images/tick-icon.png" 
-              alt="Icon" 
-              width={20}
-              height={20} />
-            }
-            show={showToast}
-            message="This is a toast message!"
-            onClose={handleCloseToast}
-            duration={3000}
-          />
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded mt-6"
-            onClick={() => setIsOpen(true)}
-          >
-            Open Modal
-          </button>
-          {isOpen && (
-            <CpModal
-              icon={
-                <Image
-                  src="/assets/images/error.png"
-                  alt="Error"
-                  width={38}
-                  height={38}
-                />
-              }
-              title="Delete Campaign"
-              description="Are you sure you want to delete this campaign from the application?"
-              cancelText="Cancel"
-              confirmText="Delete"
-              onClose={() => setIsOpen(false)} 
-              onCancel={() => setIsOpen(false)} 
-              onConfirm={() => {setIsOpen(false)}}
-            />
-          )}
         </ul>
       </div>
     </>

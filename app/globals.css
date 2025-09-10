@@ -98,6 +98,9 @@
            shadow-md transition;
     background: linear-gradient(90deg, #EC3128 0%, #F56233 50%, #FF9B3F 100%);
     /* @apply flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg font-semibold shadow-md; */
+    &.typ-small{
+      @apply px-3 py-1 rounded-[12px]
+    }
   }
 
   .btn-outline {
