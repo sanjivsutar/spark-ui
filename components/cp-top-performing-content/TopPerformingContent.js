@@ -33,7 +33,7 @@ export default function TopPerformingContent() {
                         <div className="flex flex-row gap-6 mb-3">
                             <div className="flex flex-row items-center gap-1"><span >
                                 <Image
-                                    src="/assets/icons/calander-icon.svg"
+                                    src="/assets/icons/calender-icon.svg"
                                     alt="Calander"
                                     width={12}
                                     height={12}
@@ -108,7 +108,7 @@ export default function TopPerformingContent() {
                         <div className="flex flex-row gap-6 mb-3">
                             <div className="flex flex-row items-center gap-1"><span >
                                 <Image
-                                    src="/assets/icons/calander-icon.svg"
+                                    src="/assets/icons/calender-icon.svg"
                                     alt="Calander"
                                     width={12}
                                     height={12}
@@ -183,7 +183,7 @@ export default function TopPerformingContent() {
                         <div className="flex flex-row gap-6 mb-3">
                             <div className="flex flex-row items-center gap-1"><span >
                                 <Image
-                                    src="/assets/icons/calander-icon.svg"
+                                    src="/assets/icons/calender-icon.svg"
                                     alt="Calander"
                                     width={12}
                                     height={12}

@@ -80,6 +80,12 @@
     ); */
   }
 
+  /* border gradient */
+
+  .red-yellow-border-gradient {
+    @apply bg-gradient-to-r from-[#EC3228] via-[#F66B34] to-[#FF9B3F];
+  }
+
   /* button component start*/
   .btn-default{
      @apply px-4 py-3 rounded-lg bg-white text-[#022B59] text-sm font-semibold shadow-md h-[36px] flex items-center;
