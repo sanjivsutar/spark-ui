@@ -4,6 +4,7 @@ import BarRaceChart from "@/components/cp-bar-graph/CpBarGraph";
 import CpMetricCard from "@/components/cp-card/CpMetricCard";
 import MainPanel from "@/components/cp-main-panel/cp-main-panel";
 import BarChartStyled from "@/components/cp-performance-bar-graph/PerformanceBarGraph";
+import ToastMessage from "@/components/cp-toast-message/CpToastMessage";
 import TopPerformingContent from "@/components/cp-top-performing-content/TopPerformingContent";
 import { Box, ClickAwayListener, Tab, Tabs } from "@mui/material";
 import Image from "next/image";
@@ -25,7 +26,6 @@ export default function CampaignDetail() {
     const handleClickAway = () => {
         setOpen(false);
     };
-
 
     return (
         <>
