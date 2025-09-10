@@ -10,6 +10,141 @@ import { Box, Tab, Tabs, Typography, Select, MenuItem } from "@mui/material"; //
 import CircularProgress from "@mui/material/CircularProgress";
 import CpMetricCard from "@/components/cp-card/CpMetricCard";
 import CpInfluencerDetailSwiper from "@/components/cp-influencer-detail/CpInfluencerDetailSwiper";
+import { styled } from "@mui/material/styles"; // Added missing import
+import { DataGrid } from "@mui/x-data-grid";
+
+// Define rows for StyledDataGrid
+const rows = [
+  {
+    id: 1,
+    platform: "Youtube",
+    sales: 128.45,
+    saleContribution: "58.72%",
+    roi: 47.35,
+    kpiUplift: "30.21%",
+  },
+  {
+    id: 2,
+    platform: "Instagram",
+    sales: 128.45,
+    saleContribution: "58.72%",
+    roi: 47.35,
+    kpiUplift: "30.21%",
+  },
+  {
+    id: 3,
+    platform: "TikTok",
+    sales: 128.45,
+    saleContribution: "58.72%",
+    roi: 47.35,
+    kpiUplift: "30.21%",
+  },
+  {
+    id: 4,
+    platform: "Youtube",
+    sales: 128.45,
+    saleContribution: "58.72%",
+    roi: 47.35,
+    kpiUplift: "30.21%",
+  },
+  {
+    id: 5,
+    platform: "Instagram",
+    sales: 128.45,
+    saleContribution: "58.72%",
+    roi: 47.35,
+    kpiUplift: "30.21%",
+  },
+];
+
+// Define column grouping model for StyledDataGrid
+const columnGroupingModel = [
+  {
+    groupId: "performance",
+    headerName: "Performance Metrics by Platform",
+    children: [
+      { field: "platform" },
+      { field: "sales" },
+      { field: "saleContribution" },
+      { field: "roi" },
+      { field: "kpiUplift" },
+    ],
+  },
+];
+
+// Define column structure
+const columns = [
+  { field: "platform", headerName: "Platform", flex: 1 },
+  { field: "sales", headerName: "Sales", flex: 1 },
+  { field: "saleContribution", headerName: "Sale Contribution", flex: 1 },
+  { field: "roi", headerName: "ROI", flex: 1 },
+  { field: "kpiUplift", headerName: "KPI Uplift", flex: 1 },
+];
+
+// Styled DataGrid component
+const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+  border: "none",
+  borderRadius: "12px",
+  overflow: "hidden",
+  backgroundColor: "#fff",
+  width: "100%",
+
+  // column header background
+  "& .MuiDataGrid-columnHeaders": {
+    background: "linear-gradient(180deg, #022B59 31.25%, #044085 100%)",
+    color: "#fff",
+    fontWeight: 600,
+    borderBottom: "1px solid #004080",
+    textAlign: 'center'
+  },
+
+  // group headers
+  "& .MuiDataGrid-columnHeader--group": {
+    color: "#fff",
+    fontWeight: 700,
+    textAlign: "center",
+    borderRight: "1px solid #004080",
+  },
+
+  // individual column headers
+  "& .MuiDataGrid-columnHeader": {
+    background: "linear-gradient(180deg, #022B59 31.25%, #044085 100%)",
+    color: "#fff",
+    borderRight: "1px solid #ddd",
+  },
+
+  // cell borders
+  "& .MuiDataGrid-cell": {
+    borderRight: "1px solid #ddd",
+    borderBottom: "1px solid #ddd",
+  },
+
+  // alternating row background
+  "& .MuiDataGrid-row:nth-of-type(odd)": {
+    backgroundColor: "#f9f9f9",
+  },
+
+  // row hover effect
+  "& .MuiDataGrid-row:hover": {
+    backgroundColor: "#f1f8ff",
+  },
+
+  // footer styling
+  "& .MuiDataGrid-footerContainer": {
+    backgroundColor: "#000",
+    color: "#fff",
+    borderTop: "none",
+    fontWeight: 600,
+  },
+
+  // pagination controls
+  "& .MuiTablePagination-root": {
+    color: "#fff",
+  },
+  "& .MuiTablePagination-actions svg": {
+    fill: "#fff",
+  },
+}));
 
 const InfluencerDashboard = () => {
   // for progress value
@@ -184,7 +319,17 @@ const InfluencerDashboard = () => {
             value={timeInterval}
             onChange={handleIntervalChange}
             variant="outlined"
-            sx={{ minWidth: 120, position:"absolute",height: 36, borderRadius:2, top: 2, right:0, padding: "5px", zIndex:8, background: "white" }}
+            sx={{
+              minWidth: 120,
+              position: "absolute",
+              height: 36,
+              borderRadius: 2,
+              top: 2,
+              right: 0,
+              padding: "5px",
+              zIndex: 8,
+              background: "white",
+            }}
           >
             <MenuItem value="Weekly">Weekly</MenuItem>
             <MenuItem value="Monthly">Monthly</MenuItem>
@@ -199,6 +344,108 @@ const InfluencerDashboard = () => {
     );
   };
 
+  const EngagementByPlatform = () => {
+    useEffect(() => {
+      const chartDom = document.getElementById("engagementByPlatformChart");
+      if (chartDom) {
+        const myChart = echarts.init(chartDom);
+
+        const option = {
+          title: {
+            text: "Engagement by Platform",
+            left: "left",
+            textStyle: {
+              fontSize: 18,
+              fontWeight: "bold",
+            },
+          },
+          tooltip: {
+            trigger: "item",
+          },
+          xAxis: {
+            type: "category",
+            data: ["Youtube", "Instagram", "TikTok", "Mojo", "Snapchat"],
+            axisLabel: {
+              fontWeight: "bold",
+              color: "#2c2c38",
+            },
+          },
+          yAxis: {
+            type: "value",
+            min: 0,
+            max: 80,
+            interval: 20,
+            axisLabel: {
+              color: "#60607B",
+            },
+            splitLine: {
+              show: false,
+            },
+          },
+          series: [
+            {
+              name: "Engagement",
+              type: "bar",
+              data: [45, 60, 62, 55, 55],
+              barWidth: "24px",
+              itemStyle: {
+                borderRadius: [8, 8, 0, 0],
+                color: function (params) {
+                  const gradients = [
+                    // Youtube
+                    new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                      { offset: 0, color: "#8E2DE2" },
+                      { offset: 1, color: "#4A00E0" },
+                    ]),
+                    // Instagram
+                    new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                      { offset: 0, color: "#00F260" },
+                      { offset: 1, color: "#0575E6" },
+                    ]),
+                    // TikTok
+                    new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                      { offset: 0, color: "#9D50BB" },
+                      { offset: 1, color: "#6E48AA" },
+                    ]),
+                    // Mojo
+                    new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                      { offset: 0, color: "#00c6ff" },
+                      { offset: 1, color: "#0072ff" },
+                    ]),
+                    // Snapchat
+                    new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                      { offset: 0, color: "#fceabb" },
+                      { offset: 1, color: "#f8b500" },
+                    ]),
+                  ];
+                  return gradients[params.dataIndex];
+                },
+              },
+            },
+          ],
+          grid: {
+            left: "3%",
+            right: "4%",
+            bottom: "3%",
+            containLabel: true,
+          },
+        };
+
+        myChart.setOption(option);
+
+        return () => {
+          myChart.dispose();
+        };
+      }
+    }, []);
+
+    return (
+      <div
+        id="engagementByPlatformChart"
+        style={{ width: "100%", height: "400px" }}
+      ></div>
+    );
+  };
   return (
     <MainPanel>
       {/* Influencer Details Section */}
@@ -656,37 +903,6 @@ const InfluencerDashboard = () => {
                 </Typography>
               </Box>
             </Box>
-            {/* <svg className="w-16 h-16 -rotate-90">
-                            <circle
-                                cx="32"
-                                cy="32"
-                                r={radius}
-                                stroke="#f7f7f8"
-                                strokeWidth="6"
-                                fill="transparent"
-                            />
-                            <circle
-                                cx="32"
-                                cy="32"
-                                r={radius}
-                                stroke="url(#borderGradient)"
-                                strokeWidth="6"
-                                strokeDasharray={circumference}
-                                strokeDashoffset={circumference * (1 - value / 100)}
-                                fill="transparent"
-                                strokeLinecap="round"
-                            />
-                            <defs>
-                                <linearGradient id="borderGradient" gradientTransform="rotate(268.87)">
-                                    <stop offset="4.49%" stopColor="#EC3228" />
-                                    <stop offset="86.06%" stopColor="#F66B34" />
-                                    <stop offset="126.9%" stopColor="#FF9B3F" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        <span className="absolute inset-0 flex items-center justify-center font-bold text-lg text-sprk-light">
-                            {value}%
-                        </span> */}
           </div>
 
           <div className="flex justify-between">
@@ -801,11 +1017,24 @@ const InfluencerDashboard = () => {
             <>
               <PerformanceContent />
               <div className="flex gap-5 pt-20">
-                <div className="w-1/2">
-                  <Box sx={{ mb: 2, position: "relative" }}>sdsd</Box>
+                <div className="w-1/2 rounded-xl shadow-lg border border-gray-200 p-5">
+                  <Box sx={{ mb: 2, position: "relative" }}>
+                    <EngagementByPlatform />
+                  </Box>
                 </div>
-                <div className="w-1/2">
-                  <Box sx={{ mb: 2, position: "relative" }}>asdasd</Box>
+                <div className="w-1/2 rounded-xl">
+                  <Box sx={{ mb: 2, position: "relative", height: 440, width: "100%" }}>
+                    <StyledDataGrid
+                      rows={rows}
+                      columns={columns}
+                      experimentalFeatures={{ columnGrouping: true }}
+                      columnGroupingModel={columnGroupingModel}
+                      pageSizeOptions={[6]}
+                      initialState={{
+                        pagination: { paginationModel: { pageSize: 6 } },
+                      }}
+                    />
+                  </Box>
                 </div>
               </div>
             </>

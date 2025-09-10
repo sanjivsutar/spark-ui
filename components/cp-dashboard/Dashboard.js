@@ -9,12 +9,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Menu, MenuItem } from "@mui/material";
-import { Inter } from "next/font/google";
 import { handleArrowState } from "../../utils/Swiper";
 import CpTimelineDropdown from "../dropdown/CpTimelineDropdown";
 import { styled } from "@mui/material/styles"; // Added missing import
 import { DataGrid } from "@mui/x-data-grid";
 import SingleSelectDropdown from "../dropdown/SingleSelectDropdown";
+import DriverChart from "./DriverChart";
+import PieWithRoundedSlices from "./PieChart";
 
 const KPIValueData = [
   { name: "HP", data: [128.45] },
@@ -263,6 +264,10 @@ const rows = [
   },
 ];
 
+const uniqueRows = rows.filter(
+  (row, index, self) => index === self.findIndex((r) => r.brands === row.brands)
+);
+
 // Define column grouping model for StyledDataGrid
 const columnGroupingModel = [
   {
@@ -296,7 +301,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   width: "100%",
   // column header background
   "& .MuiDataGrid-columnHeaders": {
-   background: 'linear-gradient( 180deg, #022B59 31.25%, #044085 100%)',
+    background: "linear-gradient( 180deg, #022B59 31.25%, #044085 100%)",
     // Blue background for column headers
     color: "#fff",
     fontWeight: 600,
@@ -313,8 +318,8 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
 
   // individual column headers (Brands, value, volume, etc.)
   "& .MuiDataGrid-columnHeader": {
-    background: "#fff", // Blue background for individual column headers
-    color: "#000",
+    background: "linear-gradient(180deg, #022B59 31.25%, #044085 100%)",
+    color: "#fff",
     borderRight: "1px solid #ddd",
   },
 
@@ -1079,7 +1084,7 @@ const CmpDashboard = () => {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-row align-center justify-between gap-4">
                   <div className="flex w-1/2 rounded-xl shadow-sm p-4 border border-gray-200 relative overflow-hidden">
                     <div className="flex flex-row items-center gap-6">
@@ -1190,11 +1195,11 @@ const CmpDashboard = () => {
                     <div></div>
                   </div>
                 </div>
-               
+
                 <div className="flex gap-5 mt-6">
                   <Box sx={{ height: 490, width: "100%" }}>
                     <StyledDataGrid
-                      rows={rows}
+                      rows={uniqueRows}
                       columns={columns}
                       experimentalFeatures={{ columnGrouping: true }}
                       columnGroupingModel={columnGroupingModel}
@@ -1276,7 +1281,18 @@ const CmpDashboard = () => {
                 </div>
               </>
             )}
-            {value === "four" && <div>Content for Item Four</div>}
+            {value === "four" && (
+              <>
+                <div className="flex gap-5 pt-20">
+                  <div className="w-1/2 rounded-xl shadow-lg border border-gray-200 p-5">
+                    <DriverChart />
+                  </div>
+                  <div className="w-1/2 rounded-xl shadow-lg border border-gray-200 p-5">
+                    <PieWithRoundedSlices />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </section>
 
