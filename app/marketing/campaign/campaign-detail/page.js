@@ -4,6 +4,7 @@ import BarRaceChart from "@/components/cp-bar-graph/CpBarGraph";
 import CpMetricCard from "@/components/cp-card/CpMetricCard";
 import MainPanel from "@/components/cp-main-panel/cp-main-panel";
 import BarChartStyled from "@/components/cp-performance-bar-graph/PerformanceBarGraph";
+import CpScenarioCard from "@/components/cp-scenario-card/CpScenarioCard";
 import ToastMessage from "@/components/cp-toast-message/CpToastMessage";
 import TopPerformingContent from "@/components/cp-top-performing-content/TopPerformingContent";
 import { Box, ClickAwayListener, Tab, Tabs } from "@mui/material";
@@ -37,7 +38,7 @@ export default function CampaignDetail() {
                         <Image src="/assets/icons/Chevron-right.svg" alt='' width={12} height={12} />
                         <p className='breadcrumb-item'>Details: Campaign Name</p>
                     </div>
-                    <div className='bg-white rounded-2xl shadow-sm border border-gray-200 p-6'>
+                    <div className='bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-10'>
                         <div className='flex items-center justify-between relative'>
                             <h2 className='sec-title mb-3 flex'>
                                 Campaign Name
@@ -66,7 +67,7 @@ export default function CampaignDetail() {
                             </ClickAwayListener>
                         </div>
                         <p className='text-xs text-sprk-dark-2 font-medium'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae.</p>
-                        <ul className='flex justify-between mt-6'>
+                        <ul className='flex justify-between mt-6 mb-6'>
                             <li>
                                 <p className='text-xs text-[#60607B] font-medium'>Sub Brand</p>
                                 <p className='text-[14px] font-bold text-sprk-dark-2'>NEC Japan</p>
@@ -84,8 +85,137 @@ export default function CampaignDetail() {
                                 <p className='text-[14px] font-bold text-sprk-dark-2'>July 2025 - Aug 2025</p>
                             </li>
                         </ul>
-                    </div>
+                        <div className="flex gap-4">
+                            <div className="flex-1 min-w-0 rounded-xl shadow-lg py-6 px-5 border border-gray-200 relative overflow-hidden card-bg">
+                                <div className="relative z-10 flex justify-between pb-4">
+                                    <div>
+                                        <p>
+                                            <span className="font-medium text-2xl">₹ </span>
+                                            <span className="font-bold text-[38px]">61.5 </span>
+                                            <span className="font-medium text-2xl">Lakh</span>
+                                        </p>
+                                        <h4 className="text-xs">Influencer Budget</h4>
+                                    </div>
+                                    <div className="w-12 h-12 bg-red-orange-gradient rounded-full flex justify-center items-center">
+                                        <Image
+                                            src="/assets/icons/Calculator.svg"
+                                            alt="Icon"
+                                            width={14}
+                                            height={14}
+                                            className="invert brightness-0"
+                                        />
+                                    </div>
+                                </div>
+                                <span className="metric-card-label blue">
+                                    0.8% Spent
+                                    <Image
+                                        src="/assets/icons/arrow-left.svg"
+                                        className="arrow-red"
+                                        alt="Icon"
+                                        width={16}
+                                        height={16}
+                                    />
+                                </span>
+                            </div>
 
+                            <div className="flex-1 min-w-0 rounded-xl shadow-lg p-6 border border-gray-200 relative overflow-hidden card-bg">
+                                <div className="relative z-10 flex justify-between pb-4">
+                                    <div>
+                                        <p>
+                                            <span className="font-medium text-2xl">₹ </span>
+                                            <span className="font-bold text-[38px]">2.32 </span>
+                                            <span className="font-medium text-2xl">Cr</span>
+                                        </p>
+                                        <h4 className="text-xs">Total Revenue Generated</h4>
+                                    </div>
+                                    <div className="w-12 h-12 bg-red-orange-gradient rounded-full flex justify-center items-center">
+                                        <Image
+                                            src="/assets/icons/rupee.svg"
+                                            alt="Icon"
+                                            width={14}
+                                            height={14}
+                                            className="invert brightness-0"
+                                        />
+                                    </div>
+                                </div>
+                                <span className="metric-card-label red">
+                                    + 275% v/s Target
+                                    <Image
+                                        src="/assets/icons/arrow-left.svg"
+                                        className="arrow-red"
+                                        alt="Icon"
+                                        width={16}
+                                        height={16}
+                                    />
+                                </span>
+                            </div>
+
+                            <div className="flex-1 min-w-0 rounded-xl shadow-lg p-6 border border-gray-200 relative overflow-hidden card-bg">
+                                <div className="relative z-10 flex justify-between pb-4">
+                                    <div>
+                                        <p>
+                                            <span className="font-bold text-[38px]">5 </span>
+                                            <span className="font-medium text-2xl">%</span>
+                                        </p>
+                                        <h4 className="text-xs">Engagement %</h4>
+                                    </div>
+                                    <div className="w-12 h-12 bg-red-orange-gradient rounded-full flex justify-center items-center">
+                                        <Image
+                                            src="/assets/icons/market-graph.svg"
+                                            alt="Icon"
+                                            width={14}
+                                            height={14}
+                                            className="invert brightness-0"
+                                        />
+                                    </div>
+                                </div>
+                                <span className="metric-card-label blue">
+                                    275% ROI
+                                    <Image
+                                        src="/assets/icons/arrow-left.svg"
+                                        className="arrow-red"
+                                        alt="Icon"
+                                        width={16}
+                                        height={16}
+                                    />
+                                </span>
+                            </div>
+                            <div className="flex-1 min-w-0 rounded-xl shadow-lg p-6 border border-gray-200 relative overflow-hidden card-bg">
+                                <div className="relative z-10 flex justify-between pb-4">
+                                    <div>
+                                        <p>
+                                            <span className="font-bold text-[38px]">20</span>
+                                            {/* <span className="font-medium text-2xl">%</span> */}
+                                        </p>
+                                        <h4 className="text-xs">Campaigns</h4>
+                                    </div>
+                                    <div className="w-12 h-12 bg-red-orange-gradient rounded-full flex justify-center items-center">
+                                        <Image
+                                            src="/assets/icons/parallel-arrow.svg"
+                                            alt="Icon"
+                                            width={14}
+                                            height={14}
+                                            className="invert brightness-0"
+                                        />
+                                    </div>
+                                </div>
+                                <span className="metric-card-label blue">
+                                    8.87% Conversion Rate
+                                    <Image
+                                        src="/assets/icons/arrow-left.svg"
+                                        className="arrow-red"
+                                        alt="Icon"
+                                        width={16}
+                                        height={16}
+                                    />
+                                </span>
+                            </div>
+                        </div>
+                       </div>
+                    <div className="">
+                        <h1 className="sec-title mb-4">Scenario</h1>
+                        <CpScenarioCard />
+                    </div>
                     <div className='flex item-center gap-5 mt-8 rounded-2xl  w-full mb-6 shadow-lg border border-gray-200 relative'>
                         <div className="rounded-xl overflow-hidden">
                             <Image
@@ -173,7 +303,7 @@ export default function CampaignDetail() {
                                             <h3 className="sec-title">Influencers Performance</h3>
                                             <p className='sec-desc text-[#60607B]'>Using your past performance data, we’ve generated insights to identify specific areas for improvement, segmented according to the data you provided.</p>
                                         </div> */}
-                                        <BarChartStyled/>
+                                        <BarChartStyled />
                                     </div>
                                     <TopPerformingContent />
                                 </>

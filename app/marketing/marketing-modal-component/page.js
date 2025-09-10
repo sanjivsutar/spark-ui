@@ -1,32 +1,81 @@
 'use client';
 
 import AddNewCampaign from '@/components/add-new-campaign-modal/AddNewCampaign';
+import CpModal from '@/components/cp-delete-compaign/CpDeleteCompaign';
 import EditCampaign from '@/components/cp-edit-campaign/CpEditCompaign';
 import CpCustomBudgetModal from '@/components/cp-modal/CpCustomBudgetModal';
+import ToastMessage from '@/components/cp-toast-message/CpToastMessage';
+import Image from 'next/image';
 import React, { useState } from 'react'
 
 const CpMarketingPopup = () => {
 
-const [isCustomBudget, setIsCustomBudget] = useState(false);
-const [isAddNewCampaign, setIsAddNewCampaign] = useState(false);
-const [isEditNewCampaign, setIsEditNewCampaign] = useState(false);
+  const [isCustomBudget, setIsCustomBudget] = useState(false);
+  const [isAddNewCampaign, setIsAddNewCampaign] = useState(false);
+  const [isEditNewCampaign, setIsEditNewCampaign] = useState(false);
+  const [showToast, setShowToast] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleShowToast = () => {
+    setShowToast(true);
+  };
+
+  const handleCloseToast = () => {
+    setShowToast(false);
+  };
 
   return (
     <div className='flex flex-col items-start'>
-        {/* KPI target page custom budge */}
-        <button className='btn-link my-4' onClick={() => setIsCustomBudget(true)}>Custom Budget</button>
+      {/* KPI target page custom budge */}
+      <button className='btn-link my-4' onClick={() => setIsCustomBudget(true)}>Custom Budget</button>
 
-        <button className='btn-link my-4' onClick={() => setIsAddNewCampaign(true)}>Add New Campaign</button>
+      <button className='btn-link my-4' onClick={() => setIsAddNewCampaign(true)}>Add New Campaign</button>
 
-         <button className='btn-link my-4' onClick={() => setIsEditNewCampaign(true)}>Edit Campaign</button>
+      <button className='btn-link my-4' onClick={() => setIsEditNewCampaign(true)}>Edit Campaign</button>
+
+      <button onClick={handleShowToast} className="bg-blue-500 text-white px-4 py-2 rounded mt-6">Show Toast</button>
+
+      <button className="bg-blue-500 text-white px-4 py-2 rounded mt-6" onClick={() => setIsOpen(true)}>Open Modal</button>
 
 
-        {/* Popup Components */}
-        <CpCustomBudgetModal open={isCustomBudget} handleClose={() => setIsCustomBudget(false)} />
+      {/* Popup Components */}
+      <CpCustomBudgetModal open={isCustomBudget} handleClose={() => setIsCustomBudget(false)} />
 
-        <AddNewCampaign open={isAddNewCampaign} handleClose={() => setIsAddNewCampaign(false)} />
+      <AddNewCampaign open={isAddNewCampaign} handleClose={() => setIsAddNewCampaign(false)} />
 
-        <EditCampaign open={isEditNewCampaign} handleClose={() => setIsEditNewCampaign(false)} />
+      <EditCampaign open={isEditNewCampaign} handleClose={() => setIsEditNewCampaign(false)} />
+      <ToastMessage
+        icon={
+          <Image
+            src="/assets/images/tick-icon.png"
+            alt="Icon"
+            width={20}
+            height={20} />
+        }
+        show={showToast}
+        message="This is a toast message!"
+        onClose={handleCloseToast}
+        duration={3000}
+      />
+          {isOpen && (
+            <CpModal
+              icon={
+                <Image
+                  src="/assets/images/error.png"
+                  alt="Error"
+                  width={38}
+                  height={38}
+                />
+              }
+              title="Delete Campaign"
+              description="Are you sure you want to delete this campaign from the application?"
+              cancelText="Cancel"
+              confirmText="Delete"
+              onClose={() => setIsOpen(false)} 
+              onCancel={() => setIsOpen(false)} 
+              onConfirm={() => {setIsOpen(false)}}
+            />
+          )}
 
     </div>
   )
