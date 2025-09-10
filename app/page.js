@@ -1,4 +1,10 @@
+"use client";
+
+import CpModal from "@/components/cp-delete-compaign/CpDeleteCompaign";
+import ToastMessage from "@/components/cp-toast-message/CpToastMessage";
+import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
   const templateLinks = [
@@ -18,7 +24,7 @@ export default function Home() {
       title: "Marketing Campaign Kpi Target",
       url: "/marketing/campaign/campaign-kpi-target",
     },
-     {
+    {
       title: "Scenario Detail",
       url: "/marketing/campaign/scenario-detail",
     },
@@ -26,15 +32,15 @@ export default function Home() {
       title: "Marketing Modal Components",
       url: "/marketing/marketing-modal-component",
     },
-     {
+    {
       title: "Influencer Dashboard",
       url: "/influencer/dashboard",
     },
-     {
+    {
       title: "Influencer Detail",
       url: "/influencer/influencer-detail",
     },
-    
+
   ];
   return (
     <>
