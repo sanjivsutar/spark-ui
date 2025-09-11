@@ -6,6 +6,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
+import { Typography } from "@mui/material";
 
 const ITEM_HEIGHT = 36;
 const ITEM_PADDING_TOP = 0;
@@ -95,7 +96,13 @@ export default function MultipleSelectCheckmarks() {
               },
             },
           }}
-          renderValue={(selected) => selected.join(", ")}
+          // renderValue={(selected) => selected.join(", ")}
+          renderValue={(selected) => (
+            <Typography sx={{ fontSize: "12px" }}>
+              <span style={{ color: "#60607B" }}>Sort by:</span>{" "}
+              <span style={{ fontWeight: 500, color: "#0D0D11" }}>{selected.join(", ")}</span>
+            </Typography>
+          )}
           MenuProps={MenuProps}
           IconComponent={ExpandMoreRoundedIcon}
         >
@@ -104,18 +111,18 @@ export default function MultipleSelectCheckmarks() {
               sx={{
                 padding: "0 3px 0 0",
                 "&.Mui-checked": {
-                  color: "#022B59",
+                  color: "#E6F0FB",
                 },
               }}
               key={name}
               value={name}
             >
-              <Checkbox
+              {/* <Checkbox
                 checked={personName.includes(name)}
                 sx={{
-                  color: "#022B59",
+                  color: "#0D0D11",
                   "&.Mui-checked": {
-                    color: "#022B59",
+                    color: "#0D0D11"
                   },
                   "& .MuiSvgIcon-root": {
                     borderRadius: 6,
@@ -124,8 +131,8 @@ export default function MultipleSelectCheckmarks() {
                     whiteSpace: "break-spaces",
                   },
                 }}
-              />
-              <ListItemText primary={name} />
+              /> */}
+              <ListItemText primary={name} className="p-4 text-xs font-medium text-sprk-dark-2"/>
             </MenuItem>
           ))}
         </Select>
