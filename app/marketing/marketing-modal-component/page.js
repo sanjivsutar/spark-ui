@@ -6,6 +6,7 @@ import EditCampaign from '@/components/cp-edit-campaign/CpEditCompaign';
 import CpContentAnalyticsModal from '@/components/cp-modal/CpcontentAnalyticsModal';
 import CpCustomBudgetModal from '@/components/cp-modal/CpCustomBudgetModal';
 import CpLimitReachedModal from '@/components/cp-modal/CpLimitReachedModal';
+import CpUploadCreativeModal from '@/components/cp-modal/CpUploadCreativeModal';
 import ToastMessage from '@/components/cp-toast-message/CpToastMessage';
 import Image from 'next/image';
 import React, { useState } from 'react'
@@ -19,6 +20,7 @@ const CpMarketingPopup = () => {
   const [isContentAnalytics, setIsContentAnalytics] = useState(false);
   const [showToast, setShowToast] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
+  const [isUploadCreative, setIsUploadCreative] = useState(false);
 
   const handleShowToast = () => {
     setShowToast(true);
@@ -41,9 +43,11 @@ const CpMarketingPopup = () => {
 
       <button className="bg-blue-500 text-white px-4 py-2 rounded mt-6" onClick={() => setIsOpen(true)}>Open Modal</button>
 
-         <button className='btn-link my-4' onClick={() => setIsLimitReached(true)}>Limit Reached</button>
+      <button className='btn-link my-4' onClick={() => setIsLimitReached(true)}>Limit Reached</button>
 
-         <button className='btn-link my-4' onClick={() => setIsContentAnalytics(true)}>Content Analytics</button>
+      <button className='btn-link my-4' onClick={() => setIsContentAnalytics(true)}>Content Analytics</button>
+
+      <button className='btn-link my-4' onClick={() => setIsUploadCreative(true)}>Upload Creatives</button>
 
 
       {/* Popup Components */}
@@ -88,6 +92,9 @@ const CpMarketingPopup = () => {
         <CpLimitReachedModal open={isLimitReached} handleClose={() => setIsLimitReached(false)} />
         
         <CpContentAnalyticsModal open={isContentAnalytics} handleClose={() => setIsContentAnalytics(false)} />
+
+        <CpUploadCreativeModal open={isUploadCreative} handleClose={() => setIsUploadCreative(false)} />
+
 
     </div>
   )
