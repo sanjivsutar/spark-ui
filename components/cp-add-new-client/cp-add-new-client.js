@@ -7,12 +7,10 @@ import {
   Modal,
   Stack,
 } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import dayjs from "dayjs";
 import SelectPrimary from "../cp-select-primary/CpSelectPrimary";
 import CustomTextField from "../cp-custom-textfield/CpCustomTextField";
-import { BorderColor } from "@mui/icons-material";
 import BasicDatePicker from "../cp-custom-calander/CpCustomCalander";
+import CheckboxLabels from "../checkbox/Checkbox";
 
 const style = {
   position: "absolute",
@@ -29,15 +27,15 @@ const style = {
   overflowY: "auto",
 };
 
-export default function AddNewCampaign({ open, handleClose }) {
+export default function AddNewClient({ open, handleClose }) {
   const [formData, setFormData] = useState({
-    campaignName: "",
+    clientName: "",
     subBrand: "",
-    product: "",
-    campaignType: "",
+    useCount: "",
     startDate: null,
     endDate: null,
-    status: "",
+    currency: "",
+    keyKpi: "",
     description: "",
   });
 
@@ -46,18 +44,17 @@ export default function AddNewCampaign({ open, handleClose }) {
       { value: "brand1", label: "Brand 1" },
       { value: "brand2", label: "Brand 2" },
     ],
-    products: [
-      { value: "product1", label: "Product 1" },
-      { value: "product2", label: "Product 2" },
+    useCounts: [
+      { value: "1", label: "1" },
+      { value: "2", label: "2" },
     ],
-    campaignTypes: [
-      { value: "type1", label: "Type 1" },
-      { value: "type2", label: "Type 2" },
+    keyKpis: [
+      { value: "kpi 1", label: "Kpi 1" },
+      { value: "kpi 2", label: "Kpi 2" },
     ],
-    statusList: [
-      { value: "ongoing", label: "Ongoing" },
-      { value: "completed", label: "Completed" },
-      { value: "archived", label: "Archived" },
+    currency: [
+      { value: "rupee", label: "Rupee" },
+      { value: "dollar", label: "Dollar" },
     ],
   };
 
@@ -67,7 +64,7 @@ export default function AddNewCampaign({ open, handleClose }) {
   };
 
   const handleSubmit = () => {
-    console.log("Submitting Campaign:", formData);
+    console.log("Submitting client:", formData);
     handleClose();
   };
 
@@ -75,23 +72,23 @@ export default function AddNewCampaign({ open, handleClose }) {
     <Modal open={open} onClose={handleClose}>
       <Box sx={style}>
         <div className="flex items-center justify-between mb-6">
-            <div className="sec-title">Add New Campaign</div>
+            <div className="sec-title">Add New Client</div>
             <button onClick={handleClose}>
               <Image src="/assets/images/close.png" alt="Icon" width={20} height={20}/>
             </button>
         </div>
         <Stack direction="row" spacing={2} mb={2}>
           <div className="felx flex-col">
-            <div className="mb-2">Campaign Name</div>
+            <div className="mb-2">Client Name <span className="text-red-500">*</span></div>
             <CustomTextField
-            placeholder="Enter campaign name"
-            value={formData.campaignName}
-            onChange={handleChange("campaignName")}
+            placeholder="Enter client name"
+            value={formData.clientName}
+            onChange={handleChange("clientName")}
              sx={{ minWidth: 380 }}
             />
           </div>
           <div className="felx flex-col">
-          <div className="mb-2">Sub Brand</div>
+          <div className="mb-2">Brand/Sub Brand <span className="text-red-500">*</span></div>
           <SelectPrimary
             placeholder="Sub Brand"
             label="Sub Brand"
@@ -106,25 +103,26 @@ export default function AddNewCampaign({ open, handleClose }) {
 
         <Stack direction="row" spacing={2} mb={2}>
           <div className="felx flex-col">
-          <div className="mb-2">Product</div>
-          <SelectPrimary
-            fullWidth
-            label="Product"
-            value={formData.product}
-            onChange={handleChange("product")}
-            items={dropdownOptions.products}
-            minWidth={380}  
-            maxWidth={400}
-          />
+          <div className="mb-2">Modules Enrolled <span className="text-red-500">*</span></div>
+          <div className="flex gap-2 flex-row">
+          <CheckboxLabels
+          label="Marketing Strategy"
+          labelSize={12}/>
+          <CheckboxLabels
+          label="Creatives"
+          labelSize={12}/>
+          <CheckboxLabels
+          label="Influencers"
+          labelSize={12}/></div>
           </div>
           <div className="felx flex-col">
-          <div className="mb-2">Campaign Type</div>
+          <div className="mb-2">User Count <span className="text-red-500">*</span></div>
           <SelectPrimary
             fullWidth
-            label="Campaign Type"
-            value={formData.campaignType}
-            onChange={handleChange("campaignType")}
-            items={dropdownOptions.campaignTypes}
+            label="1"
+            value={formData.useCount}
+            onChange={handleChange("useCount")}
+            items={dropdownOptions.useCounts}
             minWidth={380}  
             maxWidth={400}
           />
@@ -143,17 +141,29 @@ export default function AddNewCampaign({ open, handleClose }) {
         </Stack>
 
         <Stack direction="row" spacing={2} mb={2}>
-          <div className="felx flex-col">
-          <div className="mb-2">Status</div>
+        <div className="felx flex-col">
+          <div className="mb-2">Currency <span className="text-red-500">*</span></div>
           <SelectPrimary
-            label="Status"
-            value={formData.status}
-            onChange={handleChange("status")}
-            items={dropdownOptions.statusList}
+            label="Select Currency"
+            value={formData.currency}
+            onChange={handleChange("currency")}
+            items={dropdownOptions.currency}
             minWidth={380}  
             maxWidth={400}
           />
         </div>
+        <div className="felx flex-col">
+          <div className="mb-2">Key KPI <span className="text-red-500">*</span></div>
+          <SelectPrimary
+            fullWidth
+            label="Client Type"
+            value={formData.keyKpi}
+            onChange={handleChange("keyKpi")}
+            items={dropdownOptions.keyKpis}
+            minWidth={380}  
+            maxWidth={400}
+          />
+          </div>
         </Stack>
         <div className="mb-2">Add Description</div>
         <CustomTextField
@@ -173,7 +183,7 @@ export default function AddNewCampaign({ open, handleClose }) {
             Cancel
           </button>
           <button className="btn-dark rounded-xl py-3 px-4" onClick={handleSubmit}>
-            Add Campaign
+            Add Client
           </button>
         </Stack>
       </Box>
