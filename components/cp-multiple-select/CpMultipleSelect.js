@@ -19,7 +19,8 @@ const MenuProps = {
   },
 };
 
-const names = [
+// renamed so we can accept "names" as a prop safely
+const defaultNames = [
   "all",
   "laptop",
   "mobile",
@@ -28,7 +29,8 @@ const names = [
   "accessories accessories",
 ];
 
-export default function MultipleSelectCheckmarks() {
+// accept props properly; fallback to defaultNames
+export default function MultipleSelectCheckmarks({ names = defaultNames } = {}) {
   const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
@@ -100,24 +102,27 @@ export default function MultipleSelectCheckmarks() {
           renderValue={(selected) => (
             <Typography sx={{ fontSize: "12px" }}>
               <span style={{ color: "#60607B" }}>Sort by:</span>{" "}
-              <span style={{ fontWeight: 500, color: "#0D0D11" }}>{selected.join(", ")}</span>
+              <span style={{ fontWeight: 500, color: "#0D0D11" }}>
+                {Array.isArray(selected) ? selected.join(", ") : selected}
+              </span>
             </Typography>
           )}
           MenuProps={MenuProps}
           IconComponent={ExpandMoreRoundedIcon}
         >
-          {names.map((name) => (
-            <MenuItem
-              sx={{
-                padding: "0 3px 0 0",
-                "&.Mui-checked": {
-                  color: "#E6F0FB",
-                },
-              }}
-              key={name}
-              value={name}
-            >
-              {/* <Checkbox
+          {Array.isArray(names) &&
+            names.map((name) => (
+              <MenuItem
+                sx={{
+                  padding: "0 3px 0 0",
+                  "&.Mui-checked": {
+                    color: "#E6F0FB",
+                  },
+                }}
+                key={name}
+                value={name}
+              >
+                {/* <Checkbox
                 checked={personName.includes(name)}
                 sx={{
                   color: "#0D0D11",
@@ -132,9 +137,12 @@ export default function MultipleSelectCheckmarks() {
                   },
                 }}
               /> */}
-              <ListItemText primary={name} className="p-4 text-xs font-medium text-sprk-dark-2"/>
-            </MenuItem>
-          ))}
+                <ListItemText
+                  primary={name}
+                  className="p-4 text-xs font-medium text-sprk-dark-2"
+                />
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </div>
