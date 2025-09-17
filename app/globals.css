@@ -120,6 +120,9 @@
 
   .btn-link {
     @apply text-sm font-semibold uppercase border-b border-[#022B59];
+    &.blue{
+      @apply text-[#022B59];
+    }
   }
 
 
