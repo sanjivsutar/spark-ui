@@ -2,6 +2,7 @@
 
 import AddNewCampaign from '@/components/add-new-campaign-modal/AddNewCampaign';
 import AddNewClient from '@/components/cp-add-new-client/cp-add-new-client';
+import AddNewUser from '@/components/cp-add-new-user/cp-add-new-user';
 import CpModal from '@/components/cp-delete-compaign/CpDeleteCompaign';
 import EditCampaign from '@/components/cp-edit-campaign/CpEditCompaign';
 import CpContentAnalyticsModal from '@/components/cp-modal/CpcontentAnalyticsModal';
@@ -17,6 +18,7 @@ const CpMarketingPopup = () => {
   const [isCustomBudget, setIsCustomBudget] = useState(false);
   const [isAddNewCampaign, setIsAddNewCampaign] = useState(false);
   const [isAddNewClient, setisAddNewClient] = useState(false);
+  const [isAddNewUser, setisAddNewUser] = useState(false);
   const [isEditNewCampaign, setIsEditNewCampaign] = useState(false);
   const [isLimitReached, setIsLimitReached] = useState(false);
   const [isContentAnalytics, setIsContentAnalytics] = useState(false);
@@ -53,11 +55,16 @@ const CpMarketingPopup = () => {
 
       <button className='btn-link my-4' onClick={() => setisAddNewClient(true)}>Add New Client</button>
 
+      <button className='btn-link my-4' onClick={() => setisAddNewUser(true)}>Add New User</button>
+
       {/* Popup Components */}
       <CpCustomBudgetModal open={isCustomBudget} handleClose={() => setIsCustomBudget(false)} />
 
       <AddNewCampaign open={isAddNewCampaign} handleClose={() => setIsAddNewCampaign(false)} />
+
       <AddNewClient open={isAddNewClient} handleClose={() => setisAddNewClient(false)} />
+
+      <AddNewUser open={isAddNewUser} handleClose={() => setisAddNewClient(false)} />
 
       <EditCampaign open={isEditNewCampaign} handleClose={() => setIsEditNewCampaign(false)} />
       <ToastMessage
