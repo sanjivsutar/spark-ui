@@ -40,6 +40,18 @@ export default function Home() {
       title: "Influencer Detail",
       url: "/influencer/influencer-detail",
     },
+    {
+      title: "Client Listing",
+      url: "/client/client-listing",
+    },
+    {
+      title: "Client Detail",
+      url: "/client/client-detail",
+    },
+    {
+      title: "Creative Listing",
+      url: "/creative/creative-listing",
+    },
 
   ];
   return (
