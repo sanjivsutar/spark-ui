@@ -21,13 +21,13 @@ export default function CpClientMarketingStrategy() {
                             <Image src="/assets/icons/download.svg" alt='download icon' width={12} height={12} />
                             <span className="btn-link blue text-xs">Sample File</span></button>
                     </div>
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg h-[300px] flex flex-col items-center justify-center text-gray-600">
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg h-[300px] flex flex-col items-center justify-center text-gray-600">
                         <Image src="/assets/icons/Folder-open.svg" alt='Folder-open icon' width={20} height={20} />
-                        <p class="text-xs text-sprk-grey font-medium pt-2">Drag &amp; Drop your files</p>
-                        <div class="flex items-center my-4 w-[100px]">
-                            <div class="flex-1 border-t border-[#CECED6]">
-                            </div><span class="text-sprk-light-grey text-xs font-medium px-3">OR</span>
-                            <div class="flex-1 border-t border-[#CECED6]"></div>
+                        <p className="text-xs text-sprk-grey font-medium pt-2">Drag &amp; Drop your files</p>
+                        <div className="flex items-center my-4 w-[100px]">
+                            <div className="flex-1 border-t border-[#CECED6]">
+                            </div><span className="text-sprk-light-grey text-xs font-medium px-3">OR</span>
+                            <div className="flex-1 border-t border-[#CECED6]"></div>
                         </div>
                         <label className="btn-default btn-primary">
                             Browse
@@ -55,13 +55,13 @@ export default function CpClientMarketingStrategy() {
                             <Image src="/assets/icons/download.svg" alt='download icon' width={12} height={12} />
                             <span className="btn-link blue text-xs">Sample File</span></button>
                     </div>
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg h-[300px] flex flex-col items-center justify-center text-gray-600">
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg h-[300px] flex flex-col items-center justify-center text-gray-600">
                         <Image src="/assets/icons/Folder-open.svg" alt='Folder-open icon' width={20} height={20} />
-                        <p class="text-xs text-sprk-grey font-medium pt-2">Drag &amp; Drop your files</p>
-                        <div class="flex items-center my-4 w-[100px]">
-                            <div class="flex-1 border-t border-[#CECED6]">
-                            </div><span class="text-sprk-light-grey text-xs font-medium px-3">OR</span>
-                            <div class="flex-1 border-t border-[#CECED6]"></div>
+                        <p className="text-xs text-sprk-grey font-medium pt-2">Drag &amp; Drop your files</p>
+                        <div className="flex items-center my-4 w-[100px]">
+                            <div className="flex-1 border-t border-[#CECED6]">
+                            </div><span className="text-sprk-light-grey text-xs font-medium px-3">OR</span>
+                            <div className="flex-1 border-t border-[#CECED6]"></div>
                         </div>
                         <label className="btn-default btn-primary">
                             Browse
