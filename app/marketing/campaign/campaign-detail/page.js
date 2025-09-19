@@ -211,7 +211,7 @@ export default function CampaignDetail() {
                                 </span>
                             </div>
                         </div>
-                       </div>
+                    </div>
                     <div className="">
                         <h1 className="sec-title mb-4">Scenario</h1>
                         <CpScenarioCard />
