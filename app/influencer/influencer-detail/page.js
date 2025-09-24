@@ -12,6 +12,7 @@ import CpMetricCard from "@/components/cp-card/CpMetricCard";
 import CpInfluencerDetailSwiper from "@/components/cp-influencer-detail/CpInfluencerDetailSwiper";
 import { styled } from "@mui/material/styles"; // Added missing import
 import { DataGrid } from "@mui/x-data-grid";
+import CpAudienceAnalysis from "@/components/cp-audience-analysis/cp-audience-analysis";
 
 // Define rows for StyledDataGrid
 const rows = [
@@ -1037,6 +1038,7 @@ const InfluencerDashboard = () => {
                   </Box>
                 </div>
               </div>
+              <CpAudienceAnalysis />
             </>
           )}
           {tabValue === "Content" && (
