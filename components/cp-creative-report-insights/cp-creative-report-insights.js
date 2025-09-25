@@ -357,6 +357,104 @@ function BackgroundSound() {
     );
 }
 
+function BackgroundSoundMock() {
+    return (
+        <div className="flex flex-row items-center w-full">
+            <div className="flex flex-row items-end gap-4 w-[76%] p-8">
+                <div className="flex flex-col items-center p-6 w-[33%]">
+                    <div className="label mb-6 w-15 bg-[#F1ABA7] self-start">Negaive</div>
+                    <div className="flex flex-row gap-3">
+                        <div className="flex flex-col justify-end text-center min-h-[278px]">
+                        <Image
+                            src="/assets/images/background-sound-image-3.png"
+                            alt="Insights Image"
+                            width={254}
+                            height={251}
+                            className="mb-2"
+                        />
+                        <p className="text-[10px] text-[#FAFAFB]">Silent</p>
+                    </div>
+                    <div className="flex flex-col justify-end text-center min-h-[278px]">
+                        <Image
+                            src="/assets/images/background-sound-image-2.png"
+                            alt="Insights Image"
+                            width={254}
+                            height={251}
+                            className="mb-2"
+                        />
+                        <p className="text-[10px] text-[#FAFAFB]">Music</p>
+                    </div>
+                    </div>
+                </div>
+                <div className="flex flex-col items-center p-6 w-[33%]">
+                    <div className="label mb-6 w-15 bg-[#F1ABA7] self-start">Negaive</div>
+                    <div className="flex flex-row gap-3">
+                        <div className="flex flex-col justify-end text-center min-h-[278px]">
+                        <Image
+                            src="/assets/images/background-sound-image-1.png"
+                            alt="Insights Image"
+                            width={254}
+                            height={251}
+                            className="mb-2"
+                        />
+                        <p className="text-[10px] text-[#FAFAFB]">Silent</p>
+                    </div>
+                    <div className="flex flex-col justify-end text-center min-h-[278px]">
+                        <Image
+                            src="/assets/images/background-sound-image-2.png"
+                            alt="Insights Image"
+                            width={254}
+                            height={251}
+                            className="mb-2"
+                        />
+                        <p className="text-[10px] text-[#FAFAFB]">Silent</p>
+                    </div>
+                    </div>
+                </div>
+                <div className="flex flex-col items-center p-6 w-[33%]">
+                    <div className="label mb-6 w-15 bg-[#F1ABA7] self-start">Negaive</div>
+                    <div className="flex flex-row gap-3">
+                        <div className="flex flex-col justify-end text-center min-h-[278px]">
+                        <Image
+                            src="/assets/images/background-sound-image-3.png"
+                            alt="Insights Image"
+                            width={254}
+                            height={251}
+                            className="mb-2"
+                        />
+                        <p className="text-[10px] text-[#FAFAFB]">Music</p>
+                    </div>
+                    <div className="flex flex-col justify-end text-center min-h-[278px]">
+                        <Image
+                            src="/assets/images/background-sound-image-1.png"
+                            alt="Insights Image"
+                            width={254}
+                            height={251}
+                            className="mb-2"
+                        />
+                        <p className="text-[10px] text-[#FAFAFB]">Silent</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-col items-center relative left-0 w-[24%] border-[1px] border-[#CECED6] rounded-[12px] px-6 py-26 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)]">
+                <div className="mb-6">
+                    <Image
+                        src="/assets/icons/image-icon.svg"
+                        alt="Aspect ratio icon"
+                        width={30}
+                        height={30}
+                    />
+                </div>
+                <ul className="list-disc pl-5 flex flex-col gap-4">
+                    <li className="text-xs text-[#EEEEF1]">Portrait orientation of video ads typically yields greater engagement, with the <span className="text-[#FF9B3F]">9:16 aspect ratio demonstrating</span> the most significant impact in this regard.</li>
+                    <li className="text-xs text-[#EEEEF1]">Portrait orientation of video ads typically yields greater engagement, with the <span className="text-[#FF9B3F]">9:16 aspect ratio demonstrating</span> the most significant impact in this regard.</li>
+                </ul>
+            </div>
+        </div>
+    );
+}
+
 function LogoPlacement() {
     return (
         <div className="flex flex-row items-center w-full">
@@ -523,6 +621,17 @@ export default function CpCreativeReportInsights() {
                         }}
                     />
                     <Tab
+                        value="Background Sound Mock"
+                        label="Background Sound Mock"
+                        sx={{
+                            fontWeight: 500,
+                            color: "#BEBEC9",
+                            textTransform: "none",
+                            padding: "24px",
+                            "&.Mui-selected": { color: "#EEEEF1", fontWeight: 700},
+                        }}
+                    />
+                    <Tab
                         value="Shots and Objects"
                         label="Shots and Objects"
                         sx={{
@@ -575,6 +684,11 @@ export default function CpCreativeReportInsights() {
                     {tabValue === "Background Sound" && (
                         <>
                             <BackgroundSound />
+                        </>
+                    )}
+                    {tabValue === "Background Sound Mock" && (
+                        <>
+                            <BackgroundSoundMock />
                         </>
                     )}
                     {tabValue === "Shots and Objects" && (
