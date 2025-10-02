@@ -9,6 +9,7 @@ import CpContentAnalyticsModal from '@/components/cp-modal/CpcontentAnalyticsMod
 import CpCustomBudgetModal from '@/components/cp-modal/CpCustomBudgetModal';
 import CpLimitReachedModal from '@/components/cp-modal/CpLimitReachedModal';
 import CpUploadCreativeModal from '@/components/cp-modal/CpUploadCreativeModal';
+import ChatbotDrawer from '@/components/cp-spark-ai-insighs-chat/cp-spark-ai-insighs-chat';
 import ToastMessage from '@/components/cp-toast-message/CpToastMessage';
 import Image from 'next/image';
 import React, { useState } from 'react'
@@ -25,6 +26,7 @@ const CpMarketingPopup = () => {
   const [showToast, setShowToast] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
   const [isUploadCreative, setIsUploadCreative] = useState(false);
+  const [onOpenChatbot, setonOpenChatbot] = useState(false);
 
   const handleShowToast = () => {
     setShowToast(true);
@@ -57,6 +59,8 @@ const CpMarketingPopup = () => {
 
       <button className='btn-link my-4' onClick={() => setisAddNewUser(true)}>Add New User</button>
 
+      <button className="btn-link my-4" onClick={() => setonOpenChatbot(true)}>Chatbot</button>
+
       {/* Popup Components */}
       <CpCustomBudgetModal open={isCustomBudget} handleClose={() => setIsCustomBudget(false)} />
 
@@ -67,6 +71,9 @@ const CpMarketingPopup = () => {
       <AddNewUser open={isAddNewUser} handleClose={() => setisAddNewClient(false)} />
 
       <EditCampaign open={isEditNewCampaign} handleClose={() => setIsEditNewCampaign(false)} />
+
+      <ChatbotDrawer open={onOpenChatbot} handleClose={() => setonOpenChatbot(false)} />
+
       <ToastMessage
         icon={
           <Image

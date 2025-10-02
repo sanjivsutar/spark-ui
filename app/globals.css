@@ -61,7 +61,9 @@
   .card-list li {
     @apply text-sprk-light-grey text-xs font-normal;
   }
-
+  .spark-shadow {
+    box-shadow: 0 4px 40px rgba(239, 66, 37, 0.41);
+  }
   .card-bullet-list{
     @apply space-y-2 list-none;
   }
