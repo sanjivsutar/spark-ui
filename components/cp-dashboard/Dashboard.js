@@ -16,6 +16,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import SingleSelectDropdown from "../dropdown/SingleSelectDropdown";
 import DriverChart from "./DriverChart";
 import PieWithRoundedSlices from "./PieChart";
+import Drawer from "../cp-insights-drawer/cp-insights-drawer";
 
 const KPIValueData = [
   { name: "HP", data: [128.45] },
@@ -716,7 +717,7 @@ const CmpDashboard = () => {
   const goPrevslide = (id) => {
     swiperRefs.current[id]?.slidePrev();
   };
-
+  const [open, setOpen] = useState(false);
   return (
     <div className="">
       {/* Main Content */}
@@ -1041,9 +1042,58 @@ const CmpDashboard = () => {
                     </span>
                   </div>
                 </div>
-                <div className="flex gap-5">
+                <div className="relative flex gap-5 items-start">
                   <FunnelChart title="Value Growth" data={valueGrowthData} />
                   <FunnelChart title="Volume Growth" data={volumeGrowthData} />
+
+                  {/* AI Insights Button stays above drawer */}
+                  <Drawer
+                    open={open}
+                    onToggle={() => setOpen(!open)}
+                    title=""
+                    description=""
+                  >
+                    <div className="flex items-center gap-1 bg-[#FF9B3F] p-[6px] w-18 rounded-[4px]"><span><Image
+                      src="/assets/icons/Shape.svg"
+                      alt="Home Icon"
+                      width={14}
+                      height={14}
+                    // className="invert brightness-0"
+                    />
+                    </span><span className="text-[10px] text-[#0D0D11]">AI Says</span></div>
+                    <div className="flex flex-col justify-center gap-4">
+                      <div>
+                        <div className="flex flex-row gap-2 mb-1">
+                          <Image
+                            src="/assets/icons/Shape.svg"
+                            alt="Home Icon"
+                            width={14}
+                            height={14}
+                          // className="invert brightness-0"
+                          />
+                          <h3 className="text-[14px] font-bold text-[#05051E]">Areas that need improvement</h3>
+                        </div>
+                        <p className="text-[16px] text-[#05051E]">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae neque.
+                        </p>
+                      </div>
+                      <div>
+                        <div className="flex flex-row  gap-2 mb-1">
+                          <Image
+                            src="/assets/icons/Shape.svg"
+                            alt="Home Icon"
+                            width={14}
+                            height={14}
+                          // className="invert brightness-0"
+                          />
+                          <h3 className="text-[14px] font-bold text-[#05051E]">Areas that need improvement</h3>
+                        </div>
+                        <p className="text-[16px] text-[#05051E]">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fermentum, nulla at aliquam suscipit, nisi nisl iaculis velit, sit amet vulputate libero urna vitae neque.
+                        </p>
+                      </div>
+                    </div>
+                  </Drawer>
                 </div>
               </>
             )}
