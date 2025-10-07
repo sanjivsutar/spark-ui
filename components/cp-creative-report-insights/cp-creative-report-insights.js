@@ -82,7 +82,7 @@ function TextContext() {
             <div className="flex flex-row items-end gap-4 w-[76%] p-8 gap-4">
                 <div className="w-[50%] py-6 px-4">
                     <div className="label mb-6 w-15 bg-[#F1ABA7]">Negaive</div>
-                    <div className="mb-6 border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="mb-6 border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/image-icon.svg"
@@ -94,7 +94,7 @@ function TextContext() {
                             <span className="text-sm text-[#F7F7F8]">Theme of Text Content</span></div>
                         <div className="text-sm text-[#EEEEF1]">Adventure</div>
                     </div>
-                    <div className="border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/text-search-icon.svg"
@@ -109,7 +109,7 @@ function TextContext() {
                 </div>
                 <div className="w-[50%] py-6 px-4">
                     <div className="label mb-6 w-15 bg-[#9FEAC1]">Positive</div>
-                    <div className="mb-6 border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="mb-6 border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/image-icon.svg"
@@ -121,7 +121,7 @@ function TextContext() {
                             <span className="text-sm text-[#F7F7F8]">Number of Text Elements</span></div>
                         <div className="text-sm text-[#EEEEF1]">0 - 14 {">"}28</div>
                     </div>
-                    <div className="border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/text-search-icon.svg"
@@ -159,7 +159,7 @@ function ShortsAndObjects() {
             <div className="flex flex-row items-end gap-4 w-[76%] p-8 gap-4">
                 <div className="w-[50%] py-6 px-4">
                     <div className="label mb-6 w-15 bg-[#F1ABA7]">Negaive</div>
-                    <div className="mb-6 border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="mb-6 border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/person-icon.svg"
@@ -171,7 +171,7 @@ function ShortsAndObjects() {
                             <span className="text-sm text-[#F7F7F8]">Theme of Text Content</span></div>
                         <div className="text-sm text-[#EEEEF1]">Adventure</div>
                     </div>
-                    <div className="border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/text-search-icon.svg"
@@ -186,7 +186,7 @@ function ShortsAndObjects() {
                 </div>
                 <div className="w-[50%] py-6 px-4">
                     <div className="label mb-6 w-15 bg-[#9FEAC1]">Positive</div>
-                    <div className="mb-6 border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="mb-6 border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/cards-icon.svg"
@@ -198,7 +198,7 @@ function ShortsAndObjects() {
                             <span className="text-sm text-[#F7F7F8]">Number of Text Elements</span></div>
                         <div className="text-sm text-[#EEEEF1]">0 - 14 {">"}28</div>
                     </div>
-                    <div className="border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
+                    <div className="border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-[30px]">
                         <div className="flex flex-row gap-2 items-center"><span>
                             <Image
                                 src="/assets/icons/cards-icon.svg"
@@ -510,15 +510,15 @@ function Emotion() {
             <div className="flex flex-row items-end gap-4 w-[76%] p-8 gap-4">
                 <div className="w-[33%] py-6 px-4">
                     <div className="label mb-15 w-15 bg-[#F1ABA7]">Negaive</div>
-                    <div className="text-sm text-[#EEEEF1] border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-12">Sad</div>
+                    <div className="text-sm text-[#EEEEF1] border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-12">Sad</div>
                 </div>
                 <div className="w-[33%] py-6 px-4">
                     <div className="label mb-15 w-15 bg-[#FFF3AA]">Neutral</div>
-                    <div className="text-sm text-[#EEEEF1] border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-12">Angry <span>Confused</span></div>
+                    <div className="text-sm text-[#EEEEF1] border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-12">Angry <span>Confused</span></div>
                 </div>
                 <div className="w-[33%] py-6 px-4">
                     <div className="label mb-15 w-15 bg-[#9FEAC1]">Positive</div>
-                    <div className="text-sm text-[#EEEEF1] border border-[] bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-12">Happy</div>
+                    <div className="text-sm text-[#EEEEF1] border border-white/10 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)] rounded-[12px] px-6 py-12">Happy</div>
                 </div>
             </div>
             <div className="flex flex-col items-center relative left-0 w-[24%] border-[1px] border-[#CECED6] rounded-[12px] px-6 py-26 bg-gradient-to-b from-[rgba(82,82,82,0.24)] to-[rgba(0,30,41,0.4)]">
