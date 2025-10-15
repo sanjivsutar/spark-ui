@@ -5,6 +5,7 @@ import AddNewClient from '@/components/cp-add-new-client/cp-add-new-client';
 import AddNewUser from '@/components/cp-add-new-user/cp-add-new-user';
 import CpModal from '@/components/cp-delete-compaign/CpDeleteCompaign';
 import EditCampaign from '@/components/cp-edit-campaign/CpEditCompaign';
+import EditClient from '@/components/cp-edit-client/cp-edit-client';
 import CpContentAnalyticsModal from '@/components/cp-modal/CpcontentAnalyticsModal';
 import CpCustomBudgetModal from '@/components/cp-modal/CpCustomBudgetModal';
 import CpLimitReachedModal from '@/components/cp-modal/CpLimitReachedModal';
@@ -19,6 +20,7 @@ const CpMarketingPopup = () => {
   const [isCustomBudget, setIsCustomBudget] = useState(false);
   const [isAddNewCampaign, setIsAddNewCampaign] = useState(false);
   const [isAddNewClient, setisAddNewClient] = useState(false);
+  const [editClient, seteditClient] = useState(false);
   const [isAddNewUser, setisAddNewUser] = useState(false);
   const [isEditNewCampaign, setIsEditNewCampaign] = useState(false);
   const [isLimitReached, setIsLimitReached] = useState(false);
@@ -57,6 +59,8 @@ const CpMarketingPopup = () => {
 
       <button className='btn-link my-4' onClick={() => setisAddNewClient(true)}>Add New Client</button>
 
+      <button className='btn-link my-4' onClick={() => seteditClient(true)}>Edit Client</button>
+
       <button className='btn-link my-4' onClick={() => setisAddNewUser(true)}>Add New User</button>
 
       <button className="btn-link my-4" onClick={() => setonOpenChatbot(true)}>Chatbot</button>
@@ -68,7 +72,9 @@ const CpMarketingPopup = () => {
 
       <AddNewClient open={isAddNewClient} handleClose={() => setisAddNewClient(false)} />
 
-      <AddNewUser open={isAddNewUser} handleClose={() => setisAddNewClient(false)} />
+     <EditClient open={editClient} handleClose={() => seteditClient(false)} />
+
+      <AddNewUser open={isAddNewUser} handleClose={() => setisAddNewUser(false)} />
 
       <EditCampaign open={isEditNewCampaign} handleClose={() => setIsEditNewCampaign(false)} />
 
