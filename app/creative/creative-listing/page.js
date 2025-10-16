@@ -7,6 +7,7 @@ import CpCreativesList from '@/components/cp-creatives-list/cp-creatives-list';
 import MultipleSelectCheckmarks from '@/components/cp-multiple-select/CpMultipleSelect';
 import ImageModal from '@/components/cp-creative-popup/cp-creative-popup';
 import CpTopCreativesList from '@/components/cp-top-ten-creatives/cp-top-ten-creatives';
+import CpProductDetails from '@/components/cp-product-details/cp-product-details';
 
 export default function CreativeListing() {
 
@@ -69,6 +70,7 @@ export default function CreativeListing() {
                         </button>
                     </div>
                 </div>
+                 <CpProductDetails />
                 <CpCreativesList onImageClick={handleImageClick} />
                 <CpTopCreativesList onImageClick={handleImageClick} />
                 <ImageModal isOpen={modalOpen} src={modalSrc} username={username} engagement={engagementPercentage} onClose={handleClose} alt="Creative" />
