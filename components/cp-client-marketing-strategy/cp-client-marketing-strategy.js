@@ -123,7 +123,6 @@ export default function CpClientMarketingStrategy() {
                         </button>
                     </div>
                 </div>
-
             )}
         </div>
     );
