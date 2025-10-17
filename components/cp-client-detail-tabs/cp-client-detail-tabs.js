@@ -4,6 +4,7 @@ import React from "react";
 import { useState } from "react";
 import CpClientMarketingStrategy from "../cp-client-marketing-strategy/cp-client-marketing-strategy";
 import { Tab , Tabs } from "@mui/material";
+import CpClientCreatives from "../cp-client-creatives/cp-client-creatives";
 
 export default function CpClientDetailTabs() {
     const [tabValue, setTabValue] = useState("Users");
@@ -103,7 +104,7 @@ export default function CpClientDetailTabs() {
                 )}
                 {tabValue === "Creatives" && (
                     <>
-                        <div>Creatives</div>
+                        <CpClientCreatives/>
                     </>
                 )}
                 {tabValue === "Influencer" && (
