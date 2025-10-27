@@ -30,7 +30,7 @@ export default function ToastMessage({
       </div>
       <div className="flex flex-col items-start py-2">
       <div className="text-[14px] text-[#0D0D11] font-bold">Toast Heading</div>
-      <div className="text-[14px] text-[#0D0D11]">{message}</div>
+      <div className="text-[14px] text-[#0D0D11] w-[260px]">{message}</div>
       <button className="text-sm text-[#022B59] underline decoration-[#022B59] mt-1 font-semibold">BUTTON</button>
       </div>
     </div>

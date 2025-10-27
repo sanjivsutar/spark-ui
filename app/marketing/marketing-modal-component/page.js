@@ -83,7 +83,7 @@ const CpMarketingPopup = () => {
             height={20} />
         }
         show={showToast}
-        message="This is a toast message!"
+        message="“Aliaa Kapoor” added successfully to your Saved Influencer!"
         onClose={handleCloseToast}
         duration={3000}
       />
