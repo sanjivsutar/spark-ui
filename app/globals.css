@@ -301,9 +301,13 @@
 }
 
 .gradient-frame {
-    @apply absolute top-[4%] left-[28%] border-[2px] border-solid 
+    @apply absolute border-[2px] border-solid 
            [border-image-source:linear-gradient(307.59deg,#FF9B3F_6.09%,#DC2F23_86.05%)] 
            [border-image-slice:1] 
            bg-[linear-gradient(307.59deg,rgba(255,155,63,0.2)_6.09%,rgba(220,47,35,0.2)_86.05%)] 
            rounded-xl p-4;
   }
+
+ .gradient-frame-info{
+  @apply absolute flex flex-col items-center justify-center bg-white text-[#EF4225] text-sm rounded-xl z-10 py-1 px-3;
+}
